@@ -28,27 +28,27 @@
      --ink         가장 진한 본문 글씨
      --ink-soft    일반 본문 글씨
      --ink-sub     메인 문구 아래 보조 설명 */
-  --forest:#052115;
-  --green-deep:#00271a;
-  --green:#3a7a5e;
-  --sage:#8ba888;
-  --sage-soft:#c5d4c1;
-  --gold:#698c8e;
-  --gold-soft:#698c8e;
-  --accent:#698c8e;       /* '한 번 더' 강조 글씨 */
-  --accent-soft:#698c8e;  /* 어두운 배경 위 강조 글씨 */
-  --btn:#698c8e;          /* 주 버튼 배경 */
-  --btn-hover:#5a7a7c;    /* 주 버튼 hover */
-  --btn-text:#ffffff;     /* 주 버튼 글씨 */
-  --cream:#bfd3da;
-  --cream-deep:#a0b1a9;
-  --ink:#262b27;
-  --ink-soft:#272724;
-  --ink-sub:#4a4943;      /* 메인 문구 아래 보조 설명 */
+  --forest:#052115;         /* 가장 어두운 배경 */
+  --green-deep:#00271a;     /* 메인 딥그린 */
+  --green:#3a7a5e;          /* 중간 초록 */
+  --sage:#00271a;           /* 연한 초록 */
+  --sage-soft:#ffffff;      /* 더 연한 초록 */
+  --gold:#022317;           /* 섹션 라벨 · 장식선 */
+  --gold-soft:#7b9293;      /* 섹션 라벨 (밝은 버전) */
+  --accent:#b94e2b;         /* 강조 글씨 */
+  --accent-soft:#ffffff;    /* 강조 글씨 (밝은 버전) */
+  --btn:#b94e2b;            /* 주 버튼 배경 */
+  --btn-hover:#5a7a7c;      /* 주 버튼 (마우스 올릴 때) */
+  --btn-text:#ffffff;       /* 주 버튼 글씨색 */
+  --cream:#dbdfe1;          /* 기본 배경색 */
+  --cream-deep:#becacb;     /* 번갈아 쓰는 배경색 */
+  --ink:#262b27;            /* 가장 진한 본문 글씨 */
+  --ink-soft:#272724;       /* 일반 본문 글씨 */
+  --ink-sub:#4a4943;        /* 보조 설명 글씨 */
 
   /* 다크(forest) 섹션 위에서 쓰는 파생 색 */
-  --on-dark:#d6dcd5;
-  --on-dark-soft:#9eaaa1;
+  --on-dark:#d6dcd5;        /* 어두운 배경 위 본문 */
+  --on-dark-soft:#ffffff;   /* 어두운 배경 위 작은 글 */
   --on-dark-line:rgba(197,212,193,.22);
 
   /* 서체 — 가독성을 위해 디스플레이·본문·UI 모두 프리텐다드로 통일 */

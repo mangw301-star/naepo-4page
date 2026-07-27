@@ -16,15 +16,15 @@
   --sage:#8ba888;
   --sage-soft:#c5d4c1;
   --gold:#cda35a;
-  --gold-soft:#e3c98f;
-  --cream:#f7f3e9;
+  --gold-soft:#e7c982;
+  --cream:#f4f0e6;
   --cream-deep:#efe9da;
   --ink:#262b27;
   --ink-soft:#272724;
 
   /* 다크(forest) 섹션 위에서 쓰는 파생 색 */
-  --on-dark:rgba(247,243,233,.86);
-  --on-dark-soft:rgba(247,243,233,.62);
+  --on-dark:#d6dcd5;
+  --on-dark-soft:#9eaaa1;
   --on-dark-line:rgba(197,212,193,.22);
 
   /* 서체 — 가독성을 위해 디스플레이·본문·UI 모두 프리텐다드로 통일 */
@@ -298,14 +298,20 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
    8. 컴포넌트
    -------------------------------------------------------------------------- */
 
-/* 8-1. 브랜드 문장 (meaning) */
-.statement{max-width:40em;margin:0 auto;text-align:center}
+/* 8-1. 브랜드 문장 (meaning) — 메인 선언문, 병원소개 제목의 1.35배 크기 */
+.statement{max-width:52em;margin:0 auto;text-align:center}
+.statement .label{margin-bottom:8px}
 .statement p{
-  font-family:var(--display);font-weight:400;
-  font-size:clamp(1.34rem,1.1rem + 1.1vw,2rem);line-height:1.66;
-  color:var(--green-deep);word-break:keep-all;text-wrap:balance;
+  font-family:var(--display);font-weight:700;
+  font-size:calc(var(--fs-h2) * 1.35);line-height:1.32;letter-spacing:-.01em;
+  color:#14563f;word-break:keep-all;
 }
-.statement em{font-style:normal;font-weight:700;color:var(--gold);white-space:nowrap}
+.statement em{font-style:normal;font-weight:700;color:#c99645;white-space:nowrap}
+.statement-sub{
+  margin-top:22px;font-family:var(--sans);font-weight:400;
+  font-size:var(--fs-base);line-height:1.6;
+  color:#3a3934;word-break:keep-all;
+}
 
 /* 8-2. 철학 4분할 */
 .about-state{text-align:center;max-width:var(--measure);margin:0 auto clamp(42px,5vw,60px)}

@@ -588,18 +588,18 @@ footer .legal a:hover{color:var(--green-deep)}
    10. 퀵메뉴 / 모바일 하단바
    -------------------------------------------------------------------------- */
 /* 원형 72px → 라운드 스퀘어 52px. 그림자도 절반으로. */
-.quick{position:fixed;right:18px;bottom:26px;z-index:880;display:flex;flex-direction:column;gap:8px}
+.quick{position:fixed;right:20px;bottom:28px;z-index:880;display:flex;flex-direction:column;gap:10px}
 .quick a{
-  width:52px;height:52px;border-radius:14px;
+  width:68px;height:68px;border-radius:18px;
   background:var(--green-deep);color:var(--cream);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  font-size:.62rem;font-weight:600;letter-spacing:-.02em;
-  box-shadow:0 3px 10px rgba(5,33,21,.16);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  font-size:.74rem;font-weight:600;letter-spacing:-.02em;
+  box-shadow:0 4px 14px rgba(5,33,21,.2);
   transition:background .2s,color .2s;
 }
 .quick a:hover{background:var(--gold);color:var(--forest)}
 .quick a.top{background:var(--cream);color:var(--green-deep);border:1px solid var(--sage-soft);box-shadow:none}
-.quick svg{width:20px;height:20px}
+.quick svg{width:26px;height:26px}
 
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--forest);border-top:1px solid var(--on-dark-line);padding-bottom:env(safe-area-inset-bottom)}
 .bottom-nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;font-size:.68rem;color:rgba(247,243,233,.72);font-weight:500}

@@ -208,7 +208,7 @@ header .inwrap{height:100%;display:flex;align-items:center;justify-content:space
 .brand{display:flex;align-items:center;gap:12px;min-height:44px}
 /* logo.png 원본 파일에 아이콘 주변 여백이 많아, 확대해 여백을 잘라냅니다 */
 .brand .mark-crop{width:50px;height:50px;border-radius:7px;overflow:hidden;flex:none;display:flex}
-.brand .mark-crop img{width:100%;height:100%;object-fit:cover;transform:scale(1.9);display:block}
+.brand .mark-crop img{width:100%;height:100%;object-fit:cover;transform:scale(1.6);display:block}
 .brand strong{font-family:var(--display);font-size:1.3rem;font-weight:800;color:var(--green-deep);letter-spacing:-.01em}
 
 nav.gnb ul{display:flex;list-style:none;gap:clamp(20px,2.6vw,40px);align-items:center}
@@ -566,7 +566,7 @@ footer{background:var(--cream);color:var(--ink-soft);padding:56px 0 100px;border
 footer .f-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px}
 footer .f-brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 footer .f-brand .mark-crop{width:40px;height:40px;border-radius:6px;overflow:hidden;flex:none;display:flex}
-footer .f-brand .mark-crop img{width:100%;height:100%;object-fit:cover;transform:scale(1.9);display:block}
+footer .f-brand .mark-crop img{width:100%;height:100%;object-fit:cover;transform:scale(1.6);display:block}
 footer .f-brand strong{font-family:var(--display);font-weight:800;color:var(--green-deep);font-size:1.2rem}
 footer .f-col h3{font-size:var(--fs-sm);color:var(--green-deep);font-weight:700;margin-bottom:8px}
 footer .f-col p{font-size:var(--fs-sm);line-height:1.72}

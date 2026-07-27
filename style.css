@@ -16,8 +16,13 @@
      --green       중간 초록 (체크 표시, 링크)
      --sage        연한 초록 (테두리, 숫자)
      --sage-soft   더 연한 초록
-     --gold        강조색 (섹션 라벨, '한 번 더', 주 버튼)
-     --gold-soft   강조색 밝은 버전 (어두운 배경 위에서 사용)
+     --gold        섹션 라벨, 장식선, 활성 표시
+     --gold-soft   위 색의 밝은 버전 (어두운 배경 위에서 사용)
+     --accent      '한 번 더' 같은 문장 속 강조 글씨
+     --accent-soft 위 색의 밝은 버전 (어두운 배경 위에서 사용)
+     --btn         주 버튼 배경 (네이버 예약 등)
+     --btn-hover   주 버튼에 마우스 올렸을 때
+     --btn-text    주 버튼 글씨색
      --cream       기본 배경색
      --cream-deep  번갈아 쓰는 배경색 (한 칸 걸러 나오는 섹션)
      --ink         가장 진한 본문 글씨
@@ -30,6 +35,11 @@
   --sage-soft:#c5d4c1;
   --gold:#698c8e;
   --gold-soft:#698c8e;
+  --accent:#698c8e;       /* '한 번 더' 강조 글씨 */
+  --accent-soft:#698c8e;  /* 어두운 배경 위 강조 글씨 */
+  --btn:#698c8e;          /* 주 버튼 배경 */
+  --btn-hover:#5a7a7c;    /* 주 버튼 hover */
+  --btn-text:#ffffff;     /* 주 버튼 글씨 */
   --cream:#bfd3da;
   --cream-deep:#a0b1a9;
   --ink:#262b27;
@@ -152,8 +162,8 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 }
 .block.forest .sec-head h2{color:var(--cream)}
 /* 헤드라인 강조 = 골드 사용처 ② */
-.sec-head h2 em{font-style:normal;color:var(--gold);white-space:nowrap}
-.block.forest .sec-head h2 em{color:var(--gold-soft)}
+.sec-head h2 em{font-style:normal;color:var(--accent);white-space:nowrap}
+.block.forest .sec-head h2 em{color:var(--accent-soft)}
 .sec-head .lead{
   margin-top:16px;font-size:var(--fs-lead);color:var(--ink-soft);
   max-width:var(--measure);word-break:keep-all;
@@ -204,8 +214,8 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
   transition:background .22s, color .22s, border-color .22s;
 }
 /* 주 CTA = 골드 사용처 ③ */
-.btn-gold{background:var(--gold);color:var(--forest)}
-.btn-gold:hover{background:var(--gold-soft)}
+.btn-gold{background:var(--btn);color:var(--btn-text)}
+.btn-gold:hover{background:var(--btn-hover)}
 .btn-line{background:transparent;color:var(--cream);border:1px solid rgba(247,243,233,.45)}
 .btn-line:hover{background:rgba(247,243,233,.12)}
 .btn-ink{background:var(--green-deep);color:var(--cream)}
@@ -278,7 +288,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   color:var(--cream);text-shadow:0 2px 18px rgba(5,33,21,.55);
   word-break:keep-all;text-wrap:balance;
 }
-.hero-copy h1 em{font-style:normal;color:var(--gold-soft);white-space:nowrap}
+.hero-copy h1 em{font-style:normal;color:var(--accent-soft);white-space:nowrap}
 .hero-copy p{
   margin-top:20px;font-size:var(--fs-lead);color:rgba(247,243,233,.9);
   max-width:26em;text-shadow:0 1px 12px rgba(5,33,21,.6);word-break:keep-all;
@@ -325,7 +335,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   color:var(--green-deep);word-break:keep-all;
 }
 .statement-main .ln-medium{font-weight:500}
-.statement em{font-style:normal;font-weight:700;color:var(--gold);white-space:nowrap}
+.statement em{font-style:normal;font-weight:700;color:var(--accent);white-space:nowrap}
 .statement-sub{
   margin-top:25px;font-family:var(--sans);font-weight:400;
   font-size:20px;line-height:1.6;
@@ -339,7 +349,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   font-size:calc(var(--fs-h2) * .92);line-height:1.38;letter-spacing:-.01em;
   color:var(--green-deep);word-break:keep-all;text-wrap:balance;
 }
-.about-state h2 em{font-style:normal;color:var(--gold);white-space:nowrap}
+.about-state h2 em{font-style:normal;color:var(--accent);white-space:nowrap}
 .about-state p{margin-top:20px;color:var(--ink-soft);font-size:calc(var(--fs-lead) + 1px);word-break:keep-all}
 
 .phil{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(139,168,136,.48);border:1px solid rgba(139,168,136,.48)}
@@ -354,7 +364,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .pres-row:last-child{margin-bottom:0}
 .pres-row.flip .pres-text{order:2}
 .pres-text h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);line-height:1.42;color:var(--cream);word-break:keep-all;text-wrap:balance}
-.pres-text h3 span{color:var(--gold-soft)}
+.pres-text h3 span{color:var(--accent-soft)}
 .pres-text p{margin-top:16px;color:var(--on-dark);font-size:var(--fs-base);line-height:1.78;max-width:var(--measure);word-break:keep-all}
 .pres-text .mini{margin-top:14px;font-size:var(--fs-xs);color:rgba(247,243,233,.42);line-height:1.6}
 
@@ -622,14 +632,14 @@ footer .legal a:hover{color:var(--green-deep)}
   box-shadow:0 4px 14px rgba(5,33,21,.2);
   transition:background .2s,color .2s;
 }
-.quick a:hover{background:var(--gold);color:var(--forest)}
+.quick a:hover{background:var(--btn);color:var(--btn-text)}
 .quick a.top{background:var(--cream);color:var(--green-deep);border:1px solid var(--sage-soft);box-shadow:none}
 .quick svg{width:26px;height:26px}
 
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--forest);border-top:1px solid var(--on-dark-line);padding-bottom:env(safe-area-inset-bottom)}
 .bottom-nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;font-size:.68rem;color:rgba(247,243,233,.72);font-weight:500}
 /* 예약 = 유일한 주 액션 = 골드 사용처 ④ */
-.bottom-nav a.hl{color:var(--gold)}
+.bottom-nav a.hl{color:var(--btn)}
 .bottom-nav svg{width:20px;height:20px}
 
 /* --------------------------------------------------------------------------

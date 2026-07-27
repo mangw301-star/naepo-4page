@@ -15,10 +15,10 @@
   --green:#3a7a5e;
   --sage:#8ba888;
   --sage-soft:#c5d4c1;
-  --gold:#cda35a;
-  --gold-soft:#e7c982;
-  --cream:#f4f0e6;
-  --cream-deep:#efe9da;
+  --gold:#698c8e;
+  --gold-soft:#698c8e;
+  --cream:#8fd3da;
+  --cream-deep:#88c8cf;
   --ink:#262b27;
   --ink-soft:#272724;
 
@@ -120,14 +120,14 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 .label{
   font-family:var(--display);font-weight:600;
   font-size:16px;letter-spacing:.01em;
-  color:#b78438;margin-bottom:14px;
+  color:#698c8e;margin-bottom:14px;
   display:inline-flex;align-items:center;gap:11px;
 }
 .label::before{content:"";width:28px;height:1px;background:var(--gold)}
 .label.center{justify-content:center}
 .label.center::after{content:"";width:28px;height:1px;background:var(--gold)}
 /* 다크(forest) 배경에서는 밝은 골드로 대비 확보 */
-.block.forest .label{color:#d7b56b}
+.block.forest .label{color:#698c8e}
 
 .sec-head{margin-bottom:clamp(38px,5vw,58px);max-width:var(--measure-wide)}
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
@@ -311,7 +311,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   color:#00271a;word-break:keep-all;
 }
 .statement-main .ln-medium{font-weight:500}
-.statement em{font-style:normal;font-weight:700;color:#c99645;white-space:nowrap}
+.statement em{font-style:normal;font-weight:700;color:#698c8e;white-space:nowrap}
 .statement-sub{
   margin-top:25px;font-family:var(--sans);font-weight:400;
   font-size:20px;line-height:1.6;

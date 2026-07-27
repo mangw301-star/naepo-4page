@@ -13,7 +13,7 @@
 var LINKS = {
   booking : '',   // 네이버 예약   예) https://booking.naver.com/booking/13/bizes/000000
   place   : '',   // 네이버 플레이스 예) https://map.naver.com/p/entry/place/0000000000
-  blog    : '',   // 네이버 블로그  예) https://blog.naver.com/아이디
+  blog    : 'https://blog.naver.com/den_read',   // 네이버 블로그  예) https://blog.naver.com/아이디
   kakao   : ''    // 카카오톡 채널  예) https://pf.kakao.com/_xxxxxx
 };
 

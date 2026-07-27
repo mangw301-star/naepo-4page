@@ -258,7 +258,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   font-family:var(--display);font-weight:800;
   font-size:var(--fs-h1);line-height:1.28;letter-spacing:-.015em;
   color:var(--cream);text-shadow:0 2px 18px rgba(5,33,21,.55);
-  word-break:keep-all;
+  word-break:keep-all;text-wrap:balance;
 }
 .hero-copy h1 em{font-style:normal;color:var(--gold-soft)}
 .hero-copy p{
@@ -319,14 +319,14 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .phil-item{background:var(--cream);padding:clamp(28px,3.4vw,42px) clamp(22px,2.6vw,34px)}
 .block.alt .phil-item{background:var(--cream-deep)}
 .phil-item .n{font-family:var(--display);font-weight:700;color:var(--sage);font-size:1.9rem;line-height:1}
-.phil-item h3{font-family:var(--display);font-weight:700;font-size:var(--fs-h4);color:var(--green-deep);margin:10px 0 12px;word-break:keep-all}
+.phil-item h3{font-family:var(--display);font-weight:700;font-size:var(--fs-h4);color:var(--green-deep);margin:10px 0 12px;word-break:keep-all;text-wrap:balance}
 .phil-item p{color:var(--ink-soft);font-size:var(--fs-base);word-break:keep-all}
 
 /* 8-3. 보존 교차 행 */
 .pres-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.6vw,60px);align-items:center;margin-bottom:clamp(44px,6vw,72px)}
 .pres-row:last-child{margin-bottom:0}
 .pres-row.flip .pres-text{order:2}
-.pres-text h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);line-height:1.42;color:var(--cream);word-break:keep-all}
+.pres-text h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);line-height:1.42;color:var(--cream);word-break:keep-all;text-wrap:balance}
 .pres-text h3 span{color:var(--gold-soft)}
 .pres-text p{margin-top:16px;color:var(--on-dark);font-size:var(--fs-base);line-height:1.78;max-width:var(--measure);word-break:keep-all}
 .pres-text .mini{margin-top:14px;font-size:var(--fs-xs);color:rgba(247,243,233,.42);line-height:1.6}
@@ -334,13 +334,13 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 /* 8-4. 의료진 */
 .doctor{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,4.4vw,54px);align-items:start}
 .doctor-info h2,
-.doctor-info h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h2);line-height:1.2;color:var(--green-deep)}
+.doctor-info h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h2);line-height:1.2;color:var(--green-deep);word-break:keep-all;text-wrap:balance}
 .doctor-info .label{margin-bottom:8px}
 .doctor-info .role{display:block;margin:6px 0 22px;color:var(--green);font-weight:600;font-size:var(--fs-base);line-height:1.55}
 .doctor-quote{
   font-family:var(--display);font-weight:400;font-style:italic;
   font-size:var(--fs-lead);line-height:1.68;color:var(--green-deep);
-  border-left:2px solid var(--sage);padding-left:20px;margin-bottom:28px;word-break:keep-all;
+  border-left:2px solid var(--sage);padding-left:20px;margin-bottom:28px;word-break:keep-all;text-wrap:balance;
 }
 .career{display:grid;gap:22px}
 .career-group h3,
@@ -381,7 +381,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .spec-final.muted{background:rgba(139,168,136,.3);color:var(--ink-soft)}
 .spec-final.hl{background:var(--green-deep);color:var(--cream)}
 .spec-note{max-width:var(--measure-wide);margin:clamp(28px,4vw,44px) auto 0;text-align:center;color:var(--ink-soft);font-size:var(--fs-base);line-height:1.72;word-break:keep-all}
-.spec-figure{text-align:center;font-family:var(--display);font-weight:700;font-size:var(--fs-h4);color:var(--green-deep);margin-top:14px;word-break:keep-all}
+.spec-figure{text-align:center;font-family:var(--display);font-weight:700;font-size:var(--fs-h4);color:var(--green-deep);margin-top:14px;word-break:keep-all;text-wrap:balance}
 
 /* 8-6. 자격증 */
 .certs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,54px);max-width:760px;margin:clamp(36px,5vw,56px) auto 0}
@@ -396,7 +396,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   margin-top:clamp(28px,4vw,44px);
 }
 .block.alt .symptoms{background:var(--cream-deep)}
-.symptoms h3{font-family:var(--display);font-weight:700;font-size:var(--fs-h4);color:var(--green-deep);margin-bottom:22px;text-align:center;word-break:keep-all}
+.symptoms h3{font-family:var(--display);font-weight:700;font-size:var(--fs-h4);color:var(--green-deep);margin-bottom:22px;text-align:center;word-break:keep-all;text-wrap:balance}
 .symptoms ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:13px 30px;max-width:760px;margin:0 auto}
 .symptoms li{position:relative;padding-left:30px;color:var(--ink);font-size:var(--fs-base);line-height:1.5;word-break:keep-all}
 .symptoms li::before{
@@ -412,7 +412,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   color:var(--green);margin-bottom:10px;
 }
 .block.forest .split .info .cat-tag{color:var(--sage-soft)}
-.split .info h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);letter-spacing:-.01em;color:var(--green-deep);margin-bottom:14px;word-break:keep-all}
+.split .info h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);letter-spacing:-.01em;color:var(--green-deep);margin-bottom:14px;word-break:keep-all;text-wrap:balance}
 .block.forest .split .info h2{color:var(--cream)}
 .split .info p{color:var(--ink-soft);font-size:var(--fs-base);line-height:1.78;max-width:var(--measure);word-break:keep-all}
 .block.forest .split .info p{color:var(--on-dark)}

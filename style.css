@@ -11,7 +11,7 @@
   /* 색 — 골드는 강조색입니다. 아래 4곳 외에는 쓰지 마세요.
      ① 섹션 라벨(.label)  ② 헤드라인 강조(em)  ③ 주 CTA(.btn-gold)  ④ 활성 상태 */
   --forest:#052115;
-  --green-deep:#1e5641;
+  --green-deep:#0b3d2e;
   --green:#3a7a5e;
   --sage:#8ba888;
   --sage-soft:#c5d4c1;
@@ -308,7 +308,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .statement-main{
   font-family:var(--display);font-weight:600;
   font-size:clamp(1.85rem,1.5rem + 1.8vw,2.9rem);line-height:1.32;letter-spacing:-.01em;
-  color:#14563f;word-break:keep-all;
+  color:#0b3d2e;word-break:keep-all;
 }
 .statement-main .ln-medium{font-weight:500}
 .statement em{font-style:normal;font-weight:700;color:#c99645;white-space:nowrap}

@@ -288,7 +288,14 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   color:var(--cream);text-shadow:0 2px 18px rgba(5,33,21,.55);
   word-break:keep-all;text-wrap:balance;
 }
-.hero-copy h1 em{font-style:normal;color:var(--accent-soft);white-space:nowrap}
+/* '한 번 더' 글자 위 강조점(드러냄표) */
+.hero-copy h1 em{
+  font-style:normal;color:var(--accent-soft);white-space:nowrap;
+  -webkit-text-emphasis:'·';
+  text-emphasis:'·';
+  -webkit-text-emphasis-position:over right;
+  text-emphasis-position:over right;
+}
 .hero-copy p{
   margin-top:20px;font-size:var(--fs-lead);color:rgba(247,243,233,.9);
   max-width:26em;text-shadow:0 1px 12px rgba(5,33,21,.6);word-break:keep-all;

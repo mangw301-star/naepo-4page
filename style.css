@@ -118,14 +118,16 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 /* 섹션 헤드 --------------------------------------------------------------- */
 /* 라벨 = 골드 사용처 ① */
 .label{
-  font-family:var(--display);font-weight:700;
-  font-size:var(--fs-sm);letter-spacing:.05em;
-  color:var(--gold);margin-bottom:14px;
-  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--display);font-weight:600;
+  font-size:16px;letter-spacing:.01em;
+  color:#b78438;margin-bottom:14px;
+  display:inline-flex;align-items:center;gap:11px;
 }
-.label::before{content:"";width:26px;height:1px;background:var(--gold)}
+.label::before{content:"";width:28px;height:1px;background:var(--gold)}
 .label.center{justify-content:center}
-.label.center::after{content:"";width:26px;height:1px;background:var(--gold)}
+.label.center::after{content:"";width:28px;height:1px;background:var(--gold)}
+/* 다크(forest) 배경에서는 밝은 골드로 대비 확보 */
+.block.forest .label{color:#d7b56b}
 
 .sec-head{margin-bottom:clamp(38px,5vw,58px);max-width:var(--measure-wide)}
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
@@ -302,7 +304,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 #meaning{min-height:500px;display:flex;align-items:center}
 #meaning .inwrap{width:100%}
 .statement{max-width:900px;margin:0 auto;text-align:center}
-.statement .label{margin-bottom:14px;font-size:14px}
+.statement .label{margin-bottom:14px}
 .statement-main{
   font-family:var(--display);font-weight:600;
   font-size:clamp(1.85rem,1.5rem + 1.8vw,2.9rem);line-height:1.32;letter-spacing:-.01em;
@@ -318,7 +320,6 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 
 /* 8-2. 철학 4분할 */
 .about-state{text-align:center;max-width:var(--measure);margin:0 auto clamp(42px,5vw,60px)}
-.about-state .label{font-size:15px;font-weight:600;gap:14px}
 .about-state h2{
   font-family:var(--display);font-weight:800;
   font-size:calc(var(--fs-h2) * .92);line-height:1.38;letter-spacing:-.01em;

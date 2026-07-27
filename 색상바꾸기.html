@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>색상 바꾸기 — 내포더봄치과</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;background:#f5f5f4;color:#1c1c1a;padding:28px 20px 60px}
+  .wrap{max-width:1100px;margin:0 auto}
+  h1{font-size:1.5rem;font-weight:700;margin-bottom:6px}
+  .desc{color:#666;font-size:.93rem;line-height:1.6;margin-bottom:26px}
+  .desc b{color:#1c1c1a}
+  .grid{display:grid;grid-template-columns:340px 1fr;gap:26px;align-items:start}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+
+  .panel{background:#fff;border:1px solid #e0e0dd;border-radius:12px;padding:18px}
+  .panel h2{font-size:.95rem;font-weight:700;margin-bottom:14px;color:#444}
+
+  .row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+  .row label{flex:1;font-size:.83rem;color:#333;line-height:1.35}
+  .row label small{display:block;color:#999;font-size:.72rem}
+  .row input[type=color]{width:38px;height:32px;padding:0;border:1px solid #ccc;border-radius:6px;background:none;cursor:pointer;flex:none}
+  .row input[type=text]{width:86px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;padding:7px 8px;border:1px solid #ddd;border-radius:6px;flex:none;text-transform:uppercase}
+
+  .btns{display:flex;gap:8px;margin-top:16px}
+  button{flex:1;padding:11px;border:none;border-radius:8px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:.15s}
+  .b-main{background:#1c1c1a;color:#fff}
+  .b-main:hover{background:#000}
+  .b-sub{background:#eeeeec;color:#333}
+  .b-sub:hover{background:#e2e2df}
+
+  .out{margin-top:14px}
+  .out textarea{width:100%;height:180px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.74rem;line-height:1.7;padding:12px;border:1px solid #ddd;border-radius:8px;background:#fafafa;resize:vertical}
+  .hint{font-size:.78rem;color:#888;margin-top:8px;line-height:1.6}
+
+  /* ---- 미리보기 ---- */
+  .preview{border:1px solid #e0e0dd;border-radius:12px;overflow:hidden;background:var(--cream)}
+  .pv-head{background:var(--cream);border-bottom:1px solid rgba(0,0,0,.07);padding:14px 22px;display:flex;align-items:center;gap:10px}
+  .pv-logo{width:30px;height:30px;border-radius:6px;background:var(--green-deep);flex:none}
+  .pv-brand{font-weight:800;color:var(--green-deep);font-size:1.05rem}
+  .pv-nav{margin-left:auto;display:flex;gap:16px;font-size:.8rem;color:var(--ink-soft)}
+
+  .pv-hero{background:linear-gradient(150deg,var(--green-deep),var(--forest));padding:46px 22px;color:var(--cream)}
+  .pv-rule{width:42px;height:2px;background:var(--gold);margin-bottom:16px}
+  .pv-hero h2{font-size:1.7rem;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+  .pv-hero h2 em{font-style:normal;color:var(--accent-soft)}
+  .pv-hero p{font-size:.88rem;color:var(--on-dark);line-height:1.7;max-width:30em}
+  .pv-cta{display:flex;gap:9px;margin-top:20px}
+  .pv-btn{padding:11px 20px;font-size:.8rem;font-weight:600;border-radius:2px}
+  .pv-btn.gold{background:var(--btn);color:var(--btn-text)}
+  .pv-btn.line{border:1px solid rgba(255,255,255,.42);color:var(--cream)}
+
+  .pv-state{background:var(--cream);padding:44px 22px;text-align:center}
+  .pv-label{display:inline-flex;align-items:center;gap:11px;font-size:.82rem;font-weight:600;color:var(--gold);letter-spacing:.01em;margin-bottom:13px}
+  .pv-label::before,.pv-label::after{content:"";width:28px;height:1px;background:var(--gold)}
+  .pv-state h3{font-size:1.4rem;font-weight:600;color:var(--green-deep);line-height:1.34}
+  .pv-state h3 em{font-style:normal;font-weight:700;color:var(--accent)}
+  .pv-state .sub{margin-top:22px;font-size:.87rem;color:var(--ink-sub);line-height:1.6}
+
+  .pv-cards{background:var(--cream-deep);padding:40px 22px}
+  .pv-cards-in{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sage);border:1px solid var(--sage)}
+  .pv-card{background:var(--cream-deep);padding:22px 20px}
+  .pv-card .n{font-size:1.5rem;font-weight:600;color:var(--sage);line-height:1}
+  .pv-card h4{font-size:1rem;font-weight:600;color:var(--green-deep);margin:8px 0 8px}
+  .pv-card p{font-size:.82rem;color:var(--ink-soft);line-height:1.65}
+
+  .pv-dark{background:var(--forest);padding:40px 22px;text-align:center}
+  .pv-dark .pv-label{color:var(--gold-soft)}
+  .pv-dark .pv-label::before,.pv-dark .pv-label::after{background:var(--gold-soft)}
+  .pv-dark h3{color:var(--cream);font-size:1.25rem;font-weight:700;margin-bottom:12px}
+  .pv-dark p{color:var(--on-dark);font-size:.86rem;line-height:1.7}
+  .pv-dark .note{color:var(--on-dark-soft);font-size:.75rem;margin-top:12px}
+
+  .pv-foot{background:var(--cream);padding:24px 22px;font-size:.76rem;color:var(--ink-soft);border-top:1px solid rgba(0,0,0,.07)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>색상 바꾸기</h1>
+  <p class="desc">
+    색을 고르면 <b>오른쪽 미리보기가 즉시</b> 바뀝니다. 마음에 드는 조합이 나오면
+    아래 <b>“코드 복사”</b>를 눌러서, <b>style.css</b> 파일 맨 위 <b>:root { }</b> 안의 색 부분에 붙여넣으세요.<br>
+    (이 파일은 색을 고르는 용도일 뿐이라, 실제 홈페이지에는 영향을 주지 않습니다.)
+  </p>
+
+  <div class="grid">
+    <div>
+      <div class="panel">
+        <h2>색 고르기</h2>
+        <div id="rows"></div>
+        <div class="btns">
+          <button class="b-main" onclick="copyCode()">코드 복사</button>
+          <button class="b-sub" onclick="resetAll()">되돌리기</button>
+        </div>
+        <div class="out">
+          <textarea id="code" readonly></textarea>
+          <p class="hint">style.css 를 열고 <b>:root {</b> 바로 아래 색 줄들을 위 내용으로 바꾸면 5개 페이지에 전부 적용됩니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview" id="pv">
+      <div class="pv-head">
+        <div class="pv-logo"></div>
+        <div class="pv-brand">내포더봄치과</div>
+        <div class="pv-nav"><span>병원소개</span><span>진료과목</span><span>오시는 길</span></div>
+      </div>
+
+      <div class="pv-hero">
+        <div class="pv-rule"></div>
+        <h2>발치 전, <em>한 번 더</em> 봅니다</h2>
+        <p>치료할 치아와 지켜볼 치아를 구분해 설명합니다. 내 치아를 오래 쓰는 것, 그것이 내포더봄치과의 기준입니다.</p>
+        <div class="pv-cta">
+          <span class="pv-btn gold">네이버 예약</span>
+          <span class="pv-btn line">041-406-8875</span>
+        </div>
+      </div>
+
+      <div class="pv-state">
+        <span class="pv-label">내포더봄치과</span>
+        <h3>모든 치아를 살릴 수는 없습니다.<br>그래도 <em>한 번 더</em> 들여다보면,<br>지킬 수 있는 치아는 분명히 있습니다.</h3>
+        <p class="sub">내포더봄치과는 발치를 결정하기 전에<br>자연치아의 보존 가능성을 다시 확인합니다.</p>
+      </div>
+
+      <div class="pv-cards">
+        <div class="pv-cards-in">
+          <div class="pv-card">
+            <div class="n">01</div>
+            <h4>보존이 먼저입니다</h4>
+            <p>발치가 정답처럼 보여도, 살릴 수 있는 치아인지부터 봅니다.</p>
+          </div>
+          <div class="pv-card">
+            <div class="n">02</div>
+            <h4>지금 필요한 것부터</h4>
+            <p>당장 필요하지 않은 치료는 권하지 않습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-dark">
+        <span class="pv-label">자연치아 보존</span>
+        <h3>보존과 전문의가 직접 진단합니다</h3>
+        <p>신경치료와 자연치아 보존을 전문적으로 다루는 전문의가 직접 진단합니다.</p>
+        <p class="note">※ 치과보존과 전문의는 2021년 기준 전국 약 800여 명입니다.</p>
+      </div>
+
+      <div class="pv-foot">내포더봄치과 · 대표원장 맹황재 · 041-406-8875</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var TOKENS = [
+  ['--forest',      '#052115', '가장 어두운 배경',      '히어로 뒷배경, 모바일 하단바'],
+  ['--green-deep',  '#00271a', '메인 딥그린',           '제목, 버튼, 로고 글씨'],
+  ['--green',       '#3a7a5e', '중간 초록',             '체크 표시, 링크'],
+  ['--sage',        '#00271a', '연한 초록',             '테두리, 박스 숫자'],
+  ['--sage-soft',   '#ffffff', '더 연한 초록',          '아주 옅은 테두리'],
+  ['--gold',        '#022317', '섹션 라벨 · 장식선',    '‘병원소개’ 같은 라벨과 양옆 선'],
+  ['--gold-soft',   '#7b9293', '섹션 라벨 (밝은 버전)', '어두운 배경 위에서 사용'],
+  ['--accent',      '#b94e2b', '강조 글씨',             '‘한 번 더’ 같은 문장 속 강조'],
+  ['--accent-soft', '#ffffff', '강조 글씨 (밝은 버전)', '어두운 배경 위에서 사용'],
+  ['--btn',         '#b94e2b', '주 버튼 배경',          '네이버 예약 버튼'],
+  ['--btn-hover',   '#5a7a7c', '주 버튼 (마우스 올릴 때)', ''],
+  ['--btn-text',    '#ffffff', '주 버튼 글씨색',        ''],
+  ['--cream',       '#dbdfe1', '기본 배경색',           '페이지 전체 바탕'],
+  ['--cream-deep',  '#becacb', '번갈아 쓰는 배경색',    '한 칸 걸러 나오는 섹션'],
+  ['--ink',         '#262b27', '가장 진한 본문 글씨',   ''],
+  ['--ink-soft',    '#272724', '일반 본문 글씨',        '설명 문단 대부분'],
+  ['--ink-sub',     '#4a4943', '보조 설명 글씨',        '메인 문구 아래 작은 글'],
+  ['--on-dark',     '#d6dcd5', '어두운 배경 위 본문',   ''],
+  ['--on-dark-soft','#ffffff', '어두운 배경 위 작은 글','각주, 통계 문구']
+];
+
+var pv = document.getElementById('pv');
+var rowsEl = document.getElementById('rows');
+
+TOKENS.forEach(function (t, i) {
+  var name = t[0], val = t[1], title = t[2], where = t[3];
+  var row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML =
+    '<input type="color" value="' + val + '" data-i="' + i + '">' +
+    '<input type="text" value="' + val.toUpperCase() + '" data-i="' + i + '">' +
+    '<label>' + title + (where ? '<small>' + where + '</small>' : '') + '</label>';
+  rowsEl.appendChild(row);
+});
+
+rowsEl.addEventListener('input', function (e) {
+  var i = e.target.getAttribute('data-i');
+  if (i === null) return;
+  var v = e.target.value.trim();
+  if (e.target.type === 'text') {
+    if (!/^#?[0-9a-fA-F]{6}$/.test(v)) return;
+    if (v[0] !== '#') v = '#' + v;
+    rowsEl.querySelectorAll('input[type=color][data-i="' + i + '"]')[0].value = v;
+  } else {
+    rowsEl.querySelectorAll('input[type=text][data-i="' + i + '"]')[0].value = v.toUpperCase();
+  }
+  apply();
+});
+
+function current() {
+  return TOKENS.map(function (t, i) {
+    var el = rowsEl.querySelectorAll('input[type=color][data-i="' + i + '"]')[0];
+    return [t[0], el.value];
+  });
+}
+
+function apply() {
+  current().forEach(function (p) { pv.style.setProperty(p[0], p[1]); });
+  writeCode();
+}
+
+function writeCode() {
+  var pad = 0;
+  TOKENS.forEach(function (t) { if (t[0].length > pad) pad = t[0].length; });
+  var lines = current().map(function (p, i) {
+    var sp = new Array(pad - p[0].length + 1).join(' ');
+    var cmt = TOKENS[i][2];
+    return '  ' + p[0] + ':' + p[1] + ';' + sp + '   /* ' + cmt + ' */';
+  });
+  document.getElementById('code').value = lines.join('\n');
+}
+
+function copyCode() {
+  var ta = document.getElementById('code');
+  ta.select();
+  navigator.clipboard.writeText(ta.value).then(function () {
+    alert('복사했습니다.\n\nstyle.css 를 열고 :root { 아래 색 줄들을 붙여넣으세요.');
+  }, function () {
+    document.execCommand('copy');
+    alert('복사했습니다.');
+  });
+}
+
+function resetAll() {
+  TOKENS.forEach(function (t, i) {
+    rowsEl.querySelectorAll('input[type=color][data-i="' + i + '"]')[0].value = t[1];
+    rowsEl.querySelectorAll('input[type=text][data-i="' + i + '"]')[0].value = t[1].toUpperCase();
+  });
+  apply();
+}
+
+apply();
+</script>
+</body>
+</html>

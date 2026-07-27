@@ -37,13 +37,13 @@ var LINKS = {
         el.setAttribute('href', url);
         el.setAttribute('target', '_blank');
         el.setAttribute('rel', 'noopener');
-      } else {
-        el.style.display = 'none';   // 주소가 없으면 죽은 링크 대신 숨깁니다
       }
+      // 주소가 없어도 지금은 버튼을 그대로 보여줍니다(레이아웃 확인용).
+      // 실제 주소를 넣기 전까지는 href="#"라 눌러도 아무 동작 안 함에 유의하세요.
     });
   });
   if (unset.length && window.console) {
-    console.warn('[내포더봄치과] app.js 상단 LINKS에 아직 주소가 없어 숨겨진 버튼: ' + unset.join(', '));
+    console.warn('[내포더봄치과] app.js 상단 LINKS에 아직 주소가 없는 버튼(현재는 숨기지 않고 표시만 함): ' + unset.join(', '));
   }
 
   /* ------------------------------------------------------------------------

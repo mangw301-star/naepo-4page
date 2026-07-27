@@ -16,15 +16,15 @@
   --sage:#8ba888;
   --sage-soft:#c5d4c1;
   --gold:#cda35a;
-  --gold-soft:#e3c98f;
-  --cream:#f7f3e9;
+  --gold-soft:#e7c982;
+  --cream:#f4f0e6;
   --cream-deep:#efe9da;
   --ink:#262b27;
   --ink-soft:#272724;
 
   /* 다크(forest) 섹션 위에서 쓰는 파생 색 */
-  --on-dark:rgba(247,243,233,.86);
-  --on-dark-soft:rgba(247,243,233,.62);
+  --on-dark:#d6dcd5;
+  --on-dark-soft:#9eaaa1;
   --on-dark-line:rgba(197,212,193,.22);
 
   /* 서체 — 가독성을 위해 디스플레이·본문·UI 모두 프리텐다드로 통일 */

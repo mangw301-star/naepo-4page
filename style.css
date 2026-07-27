@@ -27,9 +27,9 @@
   --on-dark-soft:rgba(247,243,233,.62);
   --on-dark-line:rgba(197,212,193,.22);
 
-  /* 서체 — 2종. 디스플레이는 나눔명조, 본문·UI는 프리텐다드 */
-  --display:'Nanum Myeongjo', serif;
+  /* 서체 — 가독성을 위해 디스플레이·본문·UI 모두 프리텐다드로 통일 */
   --sans:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --display:var(--sans);
 
   /* 타입 스케일 — 유동값이라 데스크톱 재정의 블록이 필요 없습니다 */
   --fs-xs:.82rem;
@@ -412,8 +412,8 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   color:var(--green);margin-bottom:10px;
 }
 .block.forest .split .info .cat-tag{color:var(--sage-soft)}
-.split .info h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);letter-spacing:-.01em;color:var(--green-deep);margin-bottom:14px;word-break:keep-all}
-.block.forest .split .info h3{color:var(--cream)}
+.split .info h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);letter-spacing:-.01em;color:var(--green-deep);margin-bottom:14px;word-break:keep-all}
+.block.forest .split .info h2{color:var(--cream)}
 .split .info p{color:var(--ink-soft);font-size:var(--fs-base);line-height:1.78;max-width:var(--measure);word-break:keep-all}
 .block.forest .split .info p{color:var(--on-dark)}
 .feats{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px}
@@ -422,9 +422,10 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .block.forest .feats span{color:var(--sage-soft)}
 .block.forest .feats span::before{color:var(--sage)}
 
-/* 세로 스택 (treatment.html 진료과목) — 짝수 항목은 이미지·글 좌우 반전 */
+/* 세로 스택 (treatment.html 진료과목) — 짝수 항목은 이미지·글 좌우 반전, 항목 사이 구분선으로 구획 */
 .stack{display:grid;gap:clamp(52px,7vw,88px)}
 .stack > .split:nth-child(even) > .info{order:2}
+.stack > .split:not(:first-child){border-top:1px solid rgba(30,86,65,.15);padding-top:clamp(44px,5.6vw,68px)}
 
 /* 페이지 내 앵커 바 */
 .anchorbar{
@@ -537,7 +538,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .time-table tr.off td{color:var(--sage)}
 
 /* 8-11. 페이지 하단 CTA */
-.cta{background:var(--green-deep);color:var(--cream);padding:clamp(58px,7vw,88px) 0;text-align:center}
+.cta{background:var(--forest);color:var(--cream);padding:clamp(58px,7vw,88px) 0;text-align:center}
 .cta h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);color:var(--cream);word-break:keep-all;text-wrap:balance}
 .cta p{margin-top:14px;color:rgba(247,243,233,.78);font-size:var(--fs-base);max-width:var(--measure);margin-left:auto;margin-right:auto;word-break:keep-all}
 .cta-btns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}

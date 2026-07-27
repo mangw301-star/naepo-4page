@@ -136,7 +136,7 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 }
 .block.forest .sec-head h2{color:var(--cream)}
 /* 헤드라인 강조 = 골드 사용처 ② */
-.sec-head h2 em{font-style:normal;color:var(--gold)}
+.sec-head h2 em{font-style:normal;color:var(--gold);white-space:nowrap}
 .block.forest .sec-head h2 em{color:var(--gold-soft)}
 .sec-head .lead{
   margin-top:16px;font-size:var(--fs-lead);color:var(--ink-soft);
@@ -552,7 +552,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 }
 .block.alt .pagecard{background:var(--cream-deep)}
 .pagecard:hover{border-color:var(--green);transform:translateY(-3px)}
-.pagecard h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h4);color:var(--green-deep);margin-bottom:10px}
+.pagecard h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h4);color:var(--green-deep);margin-bottom:10px;word-break:keep-all;text-wrap:balance}
 .pagecard p{color:var(--ink-soft);font-size:var(--fs-base);word-break:keep-all}
 .pagecard .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:var(--green);font-weight:600;font-size:var(--fs-sm)}
 .pagecard:hover .go{color:var(--green-deep)}

@@ -386,6 +386,8 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 }
 .statement-main .ln-medium{font-weight:500}
 .statement em{font-style:normal;font-weight:700;color:var(--accent);white-space:nowrap}
+/* 짧은 마무리 구절이 혼자 떨어지지 않게 묶습니다 */
+.statement .nb{white-space:nowrap}
 .statement-sub{
   margin-top:25px;font-family:var(--sans);font-weight:400;
   font-size:20px;line-height:1.6;
@@ -980,13 +982,14 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 }
 
 @media (max-width:600px){
-  :root{--header-h:60px;--pad-block:68px}
+  :root{--header-h:70px;--pad-block:68px}
   body{padding-bottom:66px}
   /* 텍스처는 면마다 absolute로 깔려 스크롤 성능 부담이 없으므로 모바일에서도 유지.
      투명도만 올리지 않고 입자 크기를 20% 키워 결이 실제로 보이게 합니다. */
   :root{--grain-on-light:.08;--grain-on-dark:.05;--grain-size:216px}
-  .brand .mark-crop{width:42px;height:42px}
-  .brand strong{font-size:1.22rem}
+  .brand{gap:9px}
+  .brand .mark-crop{width:40px;height:40px}
+  .brand strong{font-size:21px}
   /* 좁은 화면에서는 최소 폭을 풀어 버튼이 화면 밖으로 나가지 않게 */
   .cta-btns .btn{min-width:150px;flex:1 1 auto;max-width:100%}
   .hero{max-height:none}
@@ -1024,10 +1027,20 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .hero-copy p{max-width:330px}
   .hero-cta{gap:11px}
 
-  /* 철학 문구 — 다른 섹션보다 안쪽으로 더 들어오게 */
-  #meaning .inwrap{padding-inline:28px}
-  .statement-main{max-width:320px;margin-inline:auto;line-height:1.4}
-  .statement-sub{max-width:320px;margin-inline:auto}
+  /* 철학 문구 — 데스크톱용 세로 채우기(min-height·optical padding)를 해제하고
+     4줄 안팎으로 자연스럽게 흐르게 조정 */
+  #meaning{min-height:0;display:block;padding:88px 0 100px}
+  #meaning .inwrap{padding-inline:23px}
+  .statement{padding-top:0}
+  .statement .label{font-size:14px;margin-bottom:34px}
+  .statement-main{
+    font-size:25px;line-height:1.42;letter-spacing:-.03em;
+    max-width:358px;margin-inline:auto;
+  }
+  .statement-sub{
+    font-size:17.5px;line-height:1.75;color:var(--ink-sub);
+    max-width:330px;margin-inline:auto;margin-top:44px;
+  }
 
   /* 병원소개 — 텍스트 블록은 카드보다 좁게 */
   #about .inwrap{padding-inline:24px}

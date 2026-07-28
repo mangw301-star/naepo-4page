@@ -42,6 +42,7 @@
   --btn-text:#ffffff;       /* 주 버튼 글씨색 */
   --cream:#f4f0e8;          /* 기본 배경색 */
   --cream-deep:#e7ddd0;     /* 번갈아 쓰는 배경색 */
+  --card:#f1ebe1;           /* 카드 배경 */
   --ink:#1f2b24;            /* 가장 진한 본문 글씨 */
   --ink-soft:#3e433d;       /* 일반 본문 글씨 */
   --ink-sub:#6b6a63;        /* 보조 설명 글씨 */
@@ -77,7 +78,8 @@
   --measure:32em;          /* 본문 최대 폭 — 국문 한 줄 30자 내외 */
   --measure-wide:44em;
   --header-h:74px;
-  --maxw:1160px;
+  --maxw:1240px;           /* 전체 콘텐츠 폭 — 이미지·카드·섹션은 넓게 */
+  --measure-text:46em;     /* 줄글만 있는 영역 — 읽기 편한 폭으로 따로 제한 */
   --pad-block:clamp(78px, 9vw, 138px);
   --r-sm:6px;              /* 버튼 — 살짝 둥글게 */
   --r-md:10px;             /* 카드 */
@@ -449,23 +451,56 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .pres-text p{margin-top:16px;color:var(--on-dark);font-size:var(--fs-base);line-height:1.78;max-width:var(--measure);word-break:keep-all}
 .pres-text .mini{margin-top:14px;font-size:var(--fs-xs);color:rgba(247,243,233,.42);line-height:1.6}
 
-/* 8-4. 의료진 */
-.doctor{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,4.4vw,54px);align-items:start}
-.doctor-info h2,
-.doctor-info h3{font-family:var(--display);font-weight:800;font-size:var(--fs-h2);line-height:1.2;color:var(--green-deep);word-break:keep-all;text-wrap:balance}
-.doctor-info .label{margin-bottom:8px}
-.doctor-info .role{display:block;margin:6px 0 22px;color:var(--green);font-weight:600;font-size:var(--fs-base);line-height:1.55}
-.doctor-quote{
-  font-family:var(--display);font-weight:400;font-style:italic;
-  font-size:var(--fs-lead);line-height:1.68;color:var(--green-deep);
-  border-left:2px solid var(--sage);padding-left:20px;margin-bottom:28px;word-break:keep-all;text-wrap:balance;
+/* 8-4. 의료진 — 사진 40% / 소개 60% 2단 */
+.doctor{display:grid;grid-template-columns:40% 1fr;gap:clamp(36px,5vw,64px);align-items:center}
+.doctor-photo .ph{border-radius:14px}
+.doctor-info .label{margin-bottom:10px}
+.doctor-info h2{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2.4rem,1.9rem + 1.9vw,3rem);line-height:1.1;letter-spacing:-.02em;
+  color:var(--green-deep);margin-bottom:20px;
 }
-.career{display:grid;gap:22px}
+/* 자격은 본문에 섞지 않고 짧은 태그 줄로 */
+.cred-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.cred-tags li{
+  font-size:var(--fs-sm);font-weight:600;color:var(--green-deep);
+  background:var(--card);border:1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+  border-radius:999px;padding:8px 16px;word-break:keep-all;
+}
+/* 원장 메시지 — 독립 강조 블록 */
+.doctor-quote{
+  font-family:var(--display);font-weight:500;font-style:normal;
+  font-size:clamp(1.2rem,1.05rem + .5vw,1.42rem);line-height:1.62;
+  color:var(--green-deep);background:var(--card);
+  border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
+  padding:24px 28px;margin:0;word-break:keep-all;text-wrap:balance;
+}
+
+/* 전문 분야 3열 */
+.field-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.field-card{
+  background:var(--card);
+  border:1px solid color-mix(in srgb, var(--gold) 20%, transparent);
+  border-radius:13px;padding:clamp(24px,2.6vw,32px);
+}
+.field-card h3{
+  font-family:var(--display);font-weight:700;font-size:var(--fs-h4);
+  color:var(--green-deep);margin-bottom:12px;word-break:keep-all;
+}
+.field-card p{color:var(--ink-soft);font-size:var(--fs-base);line-height:1.75;word-break:keep-all}
+
+/* 이력 — 카드가 아니라 정돈된 정보 블록 3열 */
+.career{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.4vw,48px)}
 .career-group h3,
-.career-group h4{font-size:var(--fs-sm);color:var(--green);font-weight:700;letter-spacing:.02em;margin-bottom:9px}
-.career-group ul{list-style:none;display:grid;gap:6px}
-.career-group li{position:relative;padding-left:16px;color:var(--ink-soft);font-size:var(--fs-base);word-break:keep-all}
-.career-group li::before{content:"";position:absolute;left:0;top:.78em;width:6px;height:1px;background:var(--sage)}
+.career-group h4{
+  font-size:var(--fs-base);color:var(--green-deep);font-weight:700;letter-spacing:0;
+  padding-bottom:12px;margin-bottom:16px;
+  border-bottom:1px solid color-mix(in srgb, var(--gold) 26%, transparent);
+}
+.career-group ul{list-style:none;display:grid;gap:12px}
+.career-group li{
+  color:var(--ink-soft);font-size:var(--fs-base);line-height:1.65;word-break:keep-all;
+}
 
 /* 8-5. 전문의 수련과정 비교 — 이 사이트의 시그니처 도표 */
 .spec{margin-top:clamp(52px,7vw,92px)}
@@ -777,6 +812,10 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 
 @media (max-width:860px){
   .doctor,.split,.pres-row{grid-template-columns:1fr;gap:28px}
+  /* 사진이 작아지지 않게 화면 폭을 그대로 쓰고, 이력은 1열 연속 배치 */
+  .doctor-photo .ph{max-width:none}
+  .field-grid{grid-template-columns:1fr;gap:13px}
+  .career{grid-template-columns:1fr;gap:34px}
   .pres-row.flip .pres-text{order:0}
   .split > .ph{order:-1}
   .stack > .split:nth-child(even) > .info{order:0}

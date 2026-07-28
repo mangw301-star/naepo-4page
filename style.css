@@ -713,11 +713,14 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 /* 8-12. 페이지 카드 (index → 하위 페이지 안내) — 비대칭 벤토
    왼쪽 55%에 대표 카드 1장, 오른쪽 45%에 카드 2장 */
 #more{padding:clamp(78px,8vw,124px) 0}
-#more .sec-head{margin-bottom:clamp(50px,5vw,64px)}
-#more .sec-head h2{font-size:clamp(1.9rem,1.5rem + 1.7vw,2.75rem);line-height:1.3}
+/* 제목과 카드를 한 덩어리로 — 간격 축소 */
+#more .sec-head{margin-bottom:clamp(28px,2.8vw,34px)}
+#more .sec-head h2{font-size:clamp(2.05rem,1.6rem + 1.9vw,3rem);line-height:1.28}
 
 .pagecards{
-  display:grid;grid-template-columns:55fr 45fr;grid-template-rows:auto auto;gap:18px;
+  display:grid;grid-template-columns:57fr 43fr;
+  /* 오른쪽 두 칸을 완전히 같게 두지 않아 기계적인 안내판 느낌을 덜어냅니다 */
+  grid-template-rows:1.06fr 1fr;gap:17px;
 }
 .pagecard-lead{grid-row:1 / span 2}
 
@@ -725,38 +728,40 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   display:flex;flex-direction:column;
   background:var(--card);
   border:1px solid color-mix(in srgb, var(--gold) 16%, transparent);
-  border-radius:15px;padding:clamp(30px,3.2vw,36px);
+  border-radius:14px;padding:clamp(32px,3.2vw,38px);
   box-shadow:0 10px 30px rgba(0,39,26,.035);
   transition:border-color .22s, transform .22s;
 }
+/* 진료공간 카드만 아주 미세하게 진한 웜베이지 */
+.pagecards .pagecard:nth-child(3){background:var(--cream-deep)}
 .block.alt .pagecard{background:var(--cream)}
 .pagecard:hover{border-color:color-mix(in srgb, var(--gold) 42%, transparent);transform:translateY(-2px)}
-.pagecard h3{font-family:var(--display);font-weight:700;font-size:27px;color:var(--green-deep);margin-bottom:14px;word-break:keep-all;text-wrap:balance}
-.pagecard p{color:var(--ink-soft);font-size:16.5px;line-height:1.7;word-break:keep-all}
+.pagecard h3{font-family:var(--display);font-weight:700;font-size:26px;color:var(--green-deep);margin-bottom:15px;word-break:keep-all;text-wrap:balance}
+.pagecard p{color:var(--ink-soft);font-size:17px;line-height:1.75;word-break:keep-all}
 /* 링크는 항상 카드 하단에 */
 .pagecard .go{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:22px;color:var(--gold);font-weight:600;font-size:var(--fs-sm)}
 .pagecard:hover .go{color:var(--green-deep)}
 
 /* 대표 카드 — 왼쪽 글 / 오른쪽 인물, 사진은 카드 오른쪽 끝까지 채웁니다 */
 .pagecard-lead{
-  --lead-pad:clamp(32px,3.4vw,42px);
-  display:grid;grid-template-columns:57fr 43fr;
-  gap:clamp(20px,2.2vw,32px);align-items:center;
+  --lead-pad:clamp(38px,3.7vw,46px);
+  display:grid;grid-template-columns:59fr 41fr;
+  gap:clamp(24px,2.4vw,34px);align-items:center;
   background:var(--cream-deep);
-  min-height:450px;padding:var(--lead-pad);
+  min-height:545px;padding:var(--lead-pad);
   overflow:hidden;position:relative;
 }
 .pagecard-lead .pagecard-body{display:flex;flex-direction:column;justify-content:center}
-.pagecard-lead h3{font-size:30px;margin-bottom:20px}
-.pagecard-lead p{font-size:17.5px;line-height:1.7}
-.pagecard-lead p b{display:inline-block;margin-bottom:6px;font-weight:700;color:var(--green-deep)}
+.pagecard-lead h3{font-size:31px;margin-bottom:20px}
+.pagecard-lead p{font-size:17.5px;line-height:1.78}
+.pagecard-lead p b{display:inline-block;margin-bottom:8px;font-weight:700;color:var(--green-deep)}
 /* 링크는 글 블록 바로 아래에 (하단 고정 아님) */
-.pagecard-lead .go{margin-top:22px;padding-top:0}
+.pagecard-lead .go{margin-top:24px;padding-top:0}
 /* 세로를 카드 높이만큼 쓰기 때문에 머리만 잘리지 않고 상반신이 들어옵니다 */
 .pagecard-photo{
   align-self:stretch;
   margin:calc(var(--lead-pad) * -1) calc(var(--lead-pad) * -1) calc(var(--lead-pad) * -1) 0;
-  background-size:cover;background-position:center top;
+  background-size:cover;background-position:center 18%;
   background-color:#eceae4;
 }
 
@@ -771,17 +776,18 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 /* 네이버 링크 — 떠 있는 작은 버튼 2개 대신 전체 폭 정보 바 */
 .naver-bar{
   display:grid;grid-template-columns:1fr 1fr;
-  margin-top:clamp(32px,3.4vw,40px);
-  background:var(--green-deep);border-radius:15px;overflow:hidden;
+  /* 카드보다 살짝 좁게 — 같은 폭으로 딱 맞으면 안내판처럼 보입니다 */
+  width:96%;margin:32px auto 0;
+  background:var(--green-deep);border-radius:14px;overflow:hidden;
 }
 .naver-bar a{
   display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:26px 24px;min-height:76px;
-  color:var(--on-dark-soft);font-size:var(--fs-base);font-weight:600;
+  padding:24px 26px;min-height:74px;
+  color:var(--on-dark-soft);font-size:16px;font-weight:600;
   text-align:center;word-break:keep-all;
   transition:color .2s;
 }
-.naver-bar a+a{border-left:1px solid var(--on-dark-line)}
+.naver-bar a+a{border-left:1px solid color-mix(in srgb, var(--on-dark-soft) 14%, transparent)}
 .naver-bar a:hover{text-decoration:underline;text-underline-offset:4px}
 
 /* --------------------------------------------------------------------------
@@ -848,9 +854,10 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
    -------------------------------------------------------------------------- */
 @media (max-width:1024px){
   /* 벤토가 좁아지면 1열로 — 카드가 세로로 눌리지 않게 */
-  .pagecards{grid-template-columns:1fr}
+  .pagecards{grid-template-columns:1fr;grid-template-rows:auto}
   /* 태블릿 이하 — 글 위 / 사진 아래. 세로를 넉넉히 줘서 얼굴만 잘리지 않게 */
   .pagecard-lead{grid-row:auto;grid-template-columns:1fr;min-height:0;padding-bottom:0}
+  .naver-bar{width:100%}
   .pagecard-lead .pagecard-photo{
     aspect-ratio:16/10;margin:4px calc(var(--lead-pad) * -1) 0;
     background-position:center 12%;

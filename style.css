@@ -633,6 +633,8 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .cta h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);color:var(--cream);word-break:keep-all;text-wrap:balance}
 .cta p{margin-top:14px;color:rgba(247,243,233,.78);font-size:var(--fs-base);max-width:var(--measure);margin-left:auto;margin-right:auto;word-break:keep-all}
 .cta-btns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+/* 글자 길이가 달라도 버튼 폭이 들쭉날쭉하지 않게 최소 폭을 맞춥니다 */
+.cta-btns .btn{min-width:190px}
 
 /* 8-12. 페이지 카드 (index → 하위 페이지 안내) */
 .pagecards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(18px,2.4vw,26px)}
@@ -761,6 +763,8 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   :root{--grain-on-light:.07;--grain-on-dark:.045}
   .brand .mark-crop{width:42px;height:42px}
   .brand strong{font-size:1.12rem}
+  /* 좁은 화면에서는 최소 폭을 풀어 버튼이 화면 밖으로 나가지 않게 */
+  .cta-btns .btn{min-width:150px;flex:1 1 auto;max-width:100%}
   .hero{max-height:none}
   .hero-overlay{background:linear-gradient(180deg,rgba(5,33,21,.42),rgba(5,33,21,.76))}
   .phil{grid-template-columns:1fr}

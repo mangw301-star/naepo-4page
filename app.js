@@ -168,6 +168,13 @@ var LINKS = {
       if (!target) return;
       setTimeout(function () { goTo(target); }, 60);
     });
+  } else {
+    /* 해시 없이 메뉴 등으로 '새로 진입(navigate)'한 경우 항상 최상단에서 시작.
+       뒤로가기(back_forward)·새로고침(reload)의 브라우저 스크롤 복원은 건드리지 않습니다. */
+    var navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+    if (!navEntry || navEntry.type === 'navigate') {
+      window.scrollTo(0, 0);
+    }
   }
 
   /* ------------------------------------------------------------------------

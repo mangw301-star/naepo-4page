@@ -746,6 +746,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .pagecard-lead .pagecard-body{display:flex;flex-direction:column;flex:1}
 .pagecard-lead h3{font-size:30px;margin-bottom:20px}
 .pagecard-lead p{font-size:17.5px;line-height:1.7;max-width:30em}
+.pagecard-lead p b{display:inline-block;margin-bottom:6px;font-weight:700;color:var(--green-deep)}
 .pagecard-photo{
   margin:26px -44px -44px;height:210px;
   background-size:cover;background-position:center 14%;

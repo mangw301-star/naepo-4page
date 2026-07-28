@@ -42,7 +42,8 @@
   --btn-text:#ffffff;       /* 주 버튼 글씨색 */
   --cream:#f4f0e8;          /* 기본 배경색 */
   --cream-deep:#e7ddd0;     /* 번갈아 쓰는 배경색 */
-  --card:#f1ebe1;           /* 카드 배경 */
+  --card:#f1ebe1;           /* 모든 밝은 카드 배경 (같은 역할 = 같은 색) */
+  --photo:#efe9e0;          /* 사진 영역 배경 */
   --ink:#1f2b24;            /* 가장 진한 본문 글씨 */
   --ink-soft:#3e433d;       /* 일반 본문 글씨 */
   --ink-sub:#6b6a63;        /* 보조 설명 글씨 */
@@ -810,8 +811,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   transition:border-color .22s, transform .22s;
 }
 /* 진료공간 카드만 아주 미세하게 진한 웜베이지 */
-.pagecards .pagecard:nth-child(3){background:var(--cream-deep)}
-.block.alt .pagecard{background:var(--cream)}
+/* 같은 역할의 카드는 전부 같은 최종 색(--card) — 개별 진한 베이지 오버라이드 제거 */
 .pagecard:hover{border-color:color-mix(in srgb, var(--gold) 42%, transparent);transform:translateY(-2px)}
 .pagecard h3{font-family:var(--display);font-weight:700;font-size:28px;color:var(--green-deep);margin-bottom:15px;word-break:keep-all;text-wrap:balance}
 .pagecard p{color:#363c37;font-size:18px;line-height:1.75;word-break:keep-all}
@@ -824,7 +824,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   --lead-pad:clamp(38px,3.7vw,46px);
   display:grid;grid-template-columns:59fr 41fr;
   gap:clamp(24px,2.4vw,34px);align-items:center;
-  background:var(--cream-deep);
+  background:var(--card);          /* 텍스트 영역도 다른 카드와 같은 색 */
   min-height:545px;padding:var(--lead-pad);
   overflow:hidden;position:relative;
 }
@@ -840,7 +840,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   align-self:stretch;
   margin:calc(var(--lead-pad) * -1) calc(var(--lead-pad) * -1) calc(var(--lead-pad) * -1) 0;
   background-size:cover;background-position:center 18%;
-  background-color:#eceae4;
+  background-color:var(--photo);
 }
 
 /* 진료항목 — 알약 버튼이 아니라 얇은 텍스트 구분 */

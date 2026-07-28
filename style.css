@@ -737,20 +737,27 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .pagecard .go{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:22px;color:var(--gold);font-weight:600;font-size:var(--fs-sm)}
 .pagecard:hover .go{color:var(--green-deep)}
 
-/* 대표 카드 — 가장 크게, 사진은 하단에 은은하게 */
+/* 대표 카드 — 왼쪽 글 / 오른쪽 인물, 사진은 카드 오른쪽 끝까지 채웁니다 */
 .pagecard-lead{
+  --lead-pad:clamp(32px,3.4vw,42px);
+  display:grid;grid-template-columns:57fr 43fr;
+  gap:clamp(20px,2.2vw,32px);align-items:center;
   background:var(--cream-deep);
-  min-height:450px;padding:clamp(34px,3.6vw,44px);
+  min-height:450px;padding:var(--lead-pad);
   overflow:hidden;position:relative;
 }
-.pagecard-lead .pagecard-body{display:flex;flex-direction:column;flex:1}
+.pagecard-lead .pagecard-body{display:flex;flex-direction:column;justify-content:center}
 .pagecard-lead h3{font-size:30px;margin-bottom:20px}
-.pagecard-lead p{font-size:17.5px;line-height:1.7;max-width:30em}
+.pagecard-lead p{font-size:17.5px;line-height:1.7}
 .pagecard-lead p b{display:inline-block;margin-bottom:6px;font-weight:700;color:var(--green-deep)}
+/* 링크는 글 블록 바로 아래에 (하단 고정 아님) */
+.pagecard-lead .go{margin-top:22px;padding-top:0}
+/* 세로를 카드 높이만큼 쓰기 때문에 머리만 잘리지 않고 상반신이 들어옵니다 */
 .pagecard-photo{
-  margin:26px -44px -44px;height:210px;
-  background-size:cover;background-position:center 14%;
-  border-radius:0;
+  align-self:stretch;
+  margin:calc(var(--lead-pad) * -1) calc(var(--lead-pad) * -1) calc(var(--lead-pad) * -1) 0;
+  background-size:cover;background-position:center top;
+  background-color:#eceae4;
 }
 
 /* 진료항목 — 알약 버튼이 아니라 얇은 텍스트 구분 */
@@ -842,8 +849,12 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 @media (max-width:1024px){
   /* 벤토가 좁아지면 1열로 — 카드가 세로로 눌리지 않게 */
   .pagecards{grid-template-columns:1fr}
-  .pagecard-lead{grid-row:auto;min-height:0}
-  .pagecard-lead .pagecard-photo{height:240px}
+  /* 태블릿 이하 — 글 위 / 사진 아래. 세로를 넉넉히 줘서 얼굴만 잘리지 않게 */
+  .pagecard-lead{grid-row:auto;grid-template-columns:1fr;min-height:0;padding-bottom:0}
+  .pagecard-lead .pagecard-photo{
+    aspect-ratio:16/10;margin:4px calc(var(--lead-pad) * -1) 0;
+    background-position:center 12%;
+  }
   .menu_but{display:flex}
   nav.gnb{
     position:fixed;top:0;right:0;height:100%;width:auto;min-width:220px;max-width:320px;
@@ -899,10 +910,12 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .pagecard{padding:26px 24px}
   .pagecard h3{font-size:23px}
   .pagecard p{font-size:15.5px}
-  .pagecard-lead{padding:26px 24px}
+  .pagecard-lead{--lead-pad:24px;padding:26px 24px 0}
   .pagecard-lead h3{font-size:24px}
   .pagecard-lead p{font-size:16px}
-  .pagecard-photo{margin:22px -24px -26px;height:200px}
+  /* 모바일은 세로로 긴 비율 — 머리만 남는 crop 방지.
+     위 1024px 규칙(.pagecard-lead .pagecard-photo)보다 특정성이 낮으면 덮이므로 같은 형태로 씁니다 */
+  .pagecard-lead .pagecard-photo{aspect-ratio:4/5;margin:18px -24px 0;background-position:center top}
   .naver-bar{grid-template-columns:1fr}
   .naver-bar a{min-height:64px;padding:20px 18px}
   .naver-bar a+a{border-left:none;border-top:1px solid var(--on-dark-line)}

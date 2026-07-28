@@ -790,21 +790,24 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .pagecard-tags li+li::before{content:"";position:absolute;left:-8px;top:.42em;width:1px;height:.85em;background:color-mix(in srgb, var(--gold) 38%, transparent)}
 
 /* 네이버 링크 — 떠 있는 작은 버튼 2개 대신 전체 폭 정보 바 */
+/* 네이버 링크 — 목적지가 다른 독립 버튼 2개 (한 덩어리 바 아님) */
 .naver-bar{
-  display:grid;grid-template-columns:1fr 1fr;
-  /* 카드보다 살짝 좁게 — 같은 폭으로 딱 맞으면 안내판처럼 보입니다 */
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
   width:93.5%;margin:38px auto 0;
-  background:var(--green-deep);border-radius:14px;overflow:hidden;
 }
 .naver-bar a{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:21px 24px;min-height:68px;
-  color:var(--on-dark-soft);font-size:16px;font-weight:600;
-  text-align:center;word-break:keep-all;
-  transition:color .2s;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:var(--green-deep);
+  border-radius:13px;padding:12px 28px;min-height:62px;
+  transition:transform .2s, filter .2s;
 }
-.naver-bar a+a{border-left:1px solid color-mix(in srgb, var(--on-dark-soft) 9%, transparent)}
-.naver-bar a:hover{text-decoration:underline;text-underline-offset:4px}
+.naver-bar a.place{background:var(--gold)}
+.naver-bar .txt{display:flex;flex-direction:column;gap:1px;text-align:left}
+.naver-bar small{font-size:10.5px;font-weight:700;letter-spacing:.1em;line-height:1.4;color:var(--on-dark-soft);opacity:.55}
+.naver-bar strong{font-size:16px;font-weight:600;line-height:1.4;color:var(--on-dark-soft);word-break:keep-all}
+.naver-bar .arr{color:var(--on-dark-soft);opacity:.85;font-size:17px;transition:transform .2s}
+.naver-bar a:hover{transform:translateY(-2px);filter:brightness(1.09)}
+.naver-bar a:hover .arr{transform:translateX(3px)}
 
 /* --------------------------------------------------------------------------
    9. 푸터
@@ -941,9 +944,8 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   /* 모바일은 세로로 긴 비율 — 머리만 남는 crop 방지.
      위 1024px 규칙(.pagecard-lead .pagecard-photo)보다 특정성이 낮으면 덮이므로 같은 형태로 씁니다 */
   .pagecard-lead .pagecard-photo{aspect-ratio:4/5;margin:18px -24px 0;background-position:center top}
-  .naver-bar{grid-template-columns:1fr}
-  .naver-bar a{min-height:64px;padding:20px 18px}
-  .naver-bar a+a{border-left:none;border-top:1px solid var(--on-dark-line)}
+  .naver-bar{grid-template-columns:1fr;gap:12px}
+  .naver-bar a{min-height:56px;padding:16px 22px}
   .phil{grid-template-columns:1fr;gap:13px}
   .phil-item{padding:26px 24px}
   .phil-item .n{font-size:22px;margin-bottom:14px}

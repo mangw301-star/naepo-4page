@@ -249,7 +249,7 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 /* 주 CTA = 골드 사용처 ③ */
 .btn-gold{background:var(--btn);color:var(--btn-text)}
 .btn-gold:hover{background:var(--btn-hover)}
-.btn-line{background:transparent;color:var(--cream);border:1px solid rgba(247,243,233,.45)}
+.btn-line{background:transparent;color:var(--cream);border:1px solid rgba(247,246,242,.22)}
 .btn-line:hover{background:rgba(247,243,233,.12)}
 .btn-ink{background:var(--green-deep);color:var(--cream)}
 .btn-ink:hover{background:var(--forest)}
@@ -721,7 +721,18 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .cta > .inwrap{position:relative;z-index:1}
 .cta h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);color:var(--cream);word-break:keep-all;text-wrap:balance}
 .cta p{margin-top:14px;color:rgba(247,243,233,.78);font-size:var(--fs-base);max-width:var(--measure);margin-left:auto;margin-right:auto;word-break:keep-all}
-.cta-btns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta-btns{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+/* CTA 버튼은 전역 버튼보다 살짝 슬림하게 */
+.cta .btn{padding:13px 34px}
+/* 3순위 정보성 링크 — 버튼이 아니라 조용한 텍스트 링크 줄 */
+.cta-sub{margin-top:18px;display:flex;gap:14px;justify-content:center;align-items:center}
+.cta-sub a{
+  color:var(--on-dark-soft);opacity:.8;font-size:15px;font-weight:500;
+  min-height:44px;display:inline-flex;align-items:center;padding:0 4px;
+  transition:opacity .2s;
+}
+.cta-sub a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.cta-sub span{color:var(--on-dark-soft);opacity:.3}
 /* 글자 길이가 달라도 버튼 폭이 들쭉날쭉하지 않게 최소 폭을 맞춥니다 */
 .cta-btns .btn{min-width:190px}
 
@@ -833,14 +844,7 @@ footer .f-col h3{font-size:var(--fs-sm);color:var(--gold-soft);font-weight:700;m
 footer .f-col p{font-size:var(--fs-sm);line-height:1.72;color:var(--on-dark)}
 footer .f-col p a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:0 -2px}
 footer .f-col a:hover{color:var(--on-dark-soft)}
-.f-sns{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
-.f-sns a{
-  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 16px;
-  border-radius:999px;border:1px solid var(--on-dark-line);
-  color:var(--on-dark);font-size:var(--fs-sm);font-weight:500;transition:.2s;
-}
-.f-sns a:hover{background:var(--on-dark-soft);color:var(--forest);border-color:var(--on-dark-soft)}
-.f-sns svg{width:17px;height:17px}
+footer .f-top{margin-bottom:38px}   /* SNS 버튼 제거 후 소개문구-법적문구 간격 보정 */
 footer .legal{border-top:1px solid var(--on-dark-line);padding-top:22px;font-size:var(--fs-xs);color:var(--on-dark-soft);opacity:.62;line-height:1.8}
 footer .legal a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;margin:0 -4px;text-decoration:underline;text-underline-offset:3px}
 footer .legal a:hover{color:var(--on-dark-soft);opacity:1}

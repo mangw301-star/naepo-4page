@@ -862,6 +862,8 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 .bottom-nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;font-size:.68rem;color:rgba(247,243,233,.72);font-weight:500}
 /* 예약 = 유일한 주 액션 = 골드 사용처 ④ */
 .bottom-nav a.hl{color:var(--btn)}
+/* 블로그는 밝은 살구톤으로 구분 */
+.bottom-nav a[data-link="blog"]{color:var(--accent-soft)}
 .bottom-nav svg{width:20px;height:20px}
 
 /* --------------------------------------------------------------------------

@@ -589,6 +589,13 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 
 /* 8-12. 페이지 카드 (index → 하위 페이지 안내) */
 .pagecards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(18px,2.4vw,26px)}
+
+/* 나란히 놓이는 버튼 2개 — 글자 길이가 달라도 폭을 똑같이 */
+.dual-btns{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+  max-width:640px;margin:clamp(30px,4vw,44px) auto 0;
+}
+@media(max-width:560px){.dual-btns{grid-template-columns:1fr}}
 .pagecard{
   display:block;background:var(--cream);border:1px solid color-mix(in srgb, var(--sage) 42%, transparent);
   border-radius:var(--r-lg);padding:clamp(28px,3.4vw,40px);

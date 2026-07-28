@@ -65,6 +65,13 @@
   --fs-h2:clamp(1.68rem, 1.36rem + 1.5vw, 2.5rem);
   --fs-h1:clamp(2.05rem, 1.55rem + 2.5vw, 3.5rem);
 
+  /* 텍스처 — 종이 결(그레인). 얼룩·캔버스·패턴 없이 균일한 미세 노이즈만.
+     타일이 너무 작으면 모바일 고해상도에서 결이 사라지므로 200px로 크게 잡습니다. */
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+  --grain-size:200px;
+  --grain-on-light:.085;   /* 아이보리·베이지 배경 — 조금 더 보이게 */
+  --grain-on-dark:.05;     /* 딥그린 배경 — 아주 약하게 */
+
   /* 간격·치수 */
   --measure:32em;          /* 본문 최대 폭 — 국문 한 줄 30자 내외 */
   --measure-wide:44em;
@@ -99,14 +106,24 @@ body{
 }
 body.lock{overflow:hidden}
 
-/* 종이 결 텍스처 — 데스크톱 전용.
-   fixed + mix-blend-mode는 스크롤마다 합성 레이어를 다시 계산하므로
-   모바일에서는 끕니다(아래 미디어쿼리). */
-body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
-  opacity:.085;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* ── 공통 종이 결 텍스처 ─────────────────────────────────────────────────
+   면마다 붙이는 방식(absolute)이라 스크롤 시 다시 그리지 않습니다.
+   그래서 예전의 fixed 오버레이와 달리 모바일에서도 끄지 않습니다.
+   밝은 면은 multiply(결이 눌린 종이), 어두운 면은 screen(필름 그레인). */
+.tex{position:relative;isolation:isolate}
+.tex::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-on-light);
+  mix-blend-mode:multiply;
 }
+.tex.on-dark::after{
+  opacity:var(--grain-on-dark);
+  mix-blend-mode:screen;
+}
+/* 텍스처 위로 내용이 올라오게 */
+.tex > *{position:relative;z-index:1}
 
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -128,16 +145,25 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 /* --------------------------------------------------------------------------
    3. 섹션 골격
    -------------------------------------------------------------------------- */
-.block{padding:var(--pad-block) 0}
-.block.alt{background:var(--cream-deep)}
-.block.forest{background:var(--forest);color:var(--on-dark);position:relative;overflow:hidden}
-.block.forest::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 78% -5%, rgba(205,163,90,.07), transparent 55%),
-    repeating-linear-gradient(90deg, transparent, transparent calc(20% - .5px), rgba(197,212,193,.045) 20%, transparent calc(20% + .5px));
+/* 모든 주요 면에 같은 계열의 결을 깝니다 (섹션별 강약만 다르게) */
+.block{padding:var(--pad-block) 0;position:relative;isolation:isolate}
+.block::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-on-light);
+  mix-blend-mode:multiply;
 }
-.block.forest > .inwrap{position:relative;z-index:1}
+.block > .inwrap{position:relative;z-index:1}
+
+.block.alt{background:var(--cream-deep)}
+
+/* 딥그린 면 — 결을 아주 약하게, screen으로 필름 그레인처럼 */
+.block.forest{background:var(--forest);color:var(--on-dark);overflow:hidden}
+.block.forest::after{
+  opacity:var(--grain-on-dark);
+  mix-blend-mode:screen;
+}
 
 /* 섹션 헤드 --------------------------------------------------------------- */
 /* 라벨 = 골드 사용처 ① */
@@ -280,6 +306,14 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(94deg, rgba(5,33,21,.72), rgba(5,33,21,.40) 52%, rgba(5,33,21,.14));
 }
+/* 히어로 결 — 딥그린 면과 같은 계열, 아주 약하게 */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-on-dark);
+  mix-blend-mode:screen;
+}
 .hero-copy{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center}
 .hero-copy .rule{width:48px;height:2px;background:var(--gold);margin-bottom:24px}
 .hero-copy h1{
@@ -311,9 +345,10 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 }
 .page-hero::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 78% -5%, rgba(205,163,90,.09), transparent 55%),
-    repeating-linear-gradient(90deg, transparent, transparent calc(20% - .5px), rgba(197,212,193,.045) 20%, transparent calc(20% + .5px));
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-on-dark);
+  mix-blend-mode:screen;
 }
 .page-hero .inwrap{position:relative;z-index:1}
 .page-hero h1{
@@ -582,7 +617,19 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .time-table tr.off td{color:var(--sage)}
 
 /* 8-11. 페이지 하단 CTA */
-.cta{background:var(--forest);color:var(--cream);padding:clamp(58px,7vw,88px) 0;text-align:center}
+.cta{
+  background:var(--green-deep);color:var(--cream);
+  padding:clamp(58px,7vw,88px) 0;text-align:center;
+  position:relative;isolation:isolate;overflow:hidden;
+}
+.cta::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-on-dark);
+  mix-blend-mode:screen;
+}
+.cta > .inwrap{position:relative;z-index:1}
 .cta h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h3);color:var(--cream);word-break:keep-all;text-wrap:balance}
 .cta p{margin-top:14px;color:rgba(247,243,233,.78);font-size:var(--fs-base);max-width:var(--measure);margin-left:auto;margin-right:auto;word-break:keep-all}
 .cta-btns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -611,27 +658,38 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 /* --------------------------------------------------------------------------
    9. 푸터
    -------------------------------------------------------------------------- */
-footer{background:var(--cream);color:var(--ink-soft);padding:56px 0 100px;border-top:1px solid color-mix(in srgb, var(--sage) 30%, transparent)}
+footer{
+  background:var(--forest);color:var(--on-dark);padding:56px 0 100px;
+  position:relative;isolation:isolate;overflow:hidden;
+}
+footer::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-on-dark);
+  mix-blend-mode:screen;
+}
+footer > .inwrap{position:relative;z-index:1}
 footer .f-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px}
 footer .f-brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 footer .f-brand .mark-crop{width:40px;height:40px;border-radius:6px;overflow:hidden;flex:none;display:flex}
 footer .f-brand .mark-crop img{width:100%;height:100%;object-fit:cover;transform:scale(1.6);display:block}
-footer .f-brand strong{font-family:var(--display);font-weight:800;color:var(--green-deep);font-size:1.2rem}
-footer .f-col h3{font-size:var(--fs-sm);color:var(--green-deep);font-weight:700;margin-bottom:8px}
-footer .f-col p{font-size:var(--fs-sm);line-height:1.72}
+footer .f-brand strong{font-family:var(--display);font-weight:800;color:var(--on-dark-soft);font-size:1.2rem}
+footer .f-col h3{font-size:var(--fs-sm);color:var(--gold-soft);font-weight:700;margin-bottom:8px}
+footer .f-col p{font-size:var(--fs-sm);line-height:1.72;color:var(--on-dark)}
 footer .f-col p a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:0 -2px}
-footer .f-col a:hover{color:var(--green-deep)}
+footer .f-col a:hover{color:var(--on-dark-soft)}
 .f-sns{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
 .f-sns a{
   display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 16px;
-  border-radius:999px;border:1px solid color-mix(in srgb, var(--sage) 50%, transparent);
-  color:var(--green-deep);font-size:var(--fs-sm);font-weight:500;transition:.2s;
+  border-radius:999px;border:1px solid var(--on-dark-line);
+  color:var(--on-dark);font-size:var(--fs-sm);font-weight:500;transition:.2s;
 }
-.f-sns a:hover{background:var(--green-deep);color:var(--cream);border-color:var(--green-deep)}
+.f-sns a:hover{background:var(--on-dark-soft);color:var(--forest);border-color:var(--on-dark-soft)}
 .f-sns svg{width:17px;height:17px}
-footer .legal{border-top:1px solid color-mix(in srgb, var(--sage) 30%, transparent);padding-top:22px;font-size:var(--fs-xs);color:rgba(38,43,39,.5);line-height:1.8}
+footer .legal{border-top:1px solid var(--on-dark-line);padding-top:22px;font-size:var(--fs-xs);color:var(--on-dark-soft);opacity:.62;line-height:1.8}
 footer .legal a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;margin:0 -4px;text-decoration:underline;text-underline-offset:3px}
-footer .legal a:hover{color:var(--green-deep)}
+footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 
 /* --------------------------------------------------------------------------
    10. 퀵메뉴 / 모바일 하단바
@@ -698,7 +756,9 @@ footer .legal a:hover{color:var(--green-deep)}
 @media (max-width:600px){
   :root{--header-h:60px;--pad-block:68px}
   body{padding-bottom:66px}
-  body::after{display:none}          /* 모바일 스크롤 성능 */
+  /* 텍스처는 이제 면마다 absolute로 깔려 스크롤 성능 부담이 없으므로
+     모바일에서도 유지합니다. 다만 결이 뭉쳐 보이지 않게 아주 살짝만 낮춥니다. */
+  :root{--grain-on-light:.07;--grain-on-dark:.045}
   .brand .mark-crop{width:42px;height:42px}
   .brand strong{font-size:1.12rem}
   .hero{max-height:none}
@@ -732,8 +792,11 @@ footer .legal a:hover{color:var(--green-deep)}
    13. 인쇄
    -------------------------------------------------------------------------- */
 @media print{
-  header,.quick,.bottom-nav,.car-arrow,.tour-nav,.nav-dim,body::after{display:none!important}
+  header,.quick,.bottom-nav,.car-arrow,.tour-nav,.nav-dim{display:none!important}
+  /* 인쇄에서는 결·배경을 모두 제거 */
+  .block::after,.cta::after,footer::after,.hero::after,.page-hero::before,.tex::after{display:none!important}
   body{padding:0;background:#fff}
-  .block.forest{background:#fff;color:#000}
-  .block.forest .sec-head h2,.dir-col h3,.dir-info p{color:#000}
+  .block.forest,.cta,footer,.page-hero{background:#fff;color:#000}
+  .block.forest .sec-head h2,.dir-col h3,.dir-info p,
+  footer .f-col p,footer .f-brand strong,footer .legal{color:#000}
 }

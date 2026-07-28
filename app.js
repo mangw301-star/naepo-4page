@@ -96,7 +96,10 @@ var LINKS = {
     }
   });
 
-  if (localLinks.length && 'IntersectionObserver' in window) {
+  /* 앵커바(페이지 내 탭)도 같은 스파이로 현재 위치를 표시합니다 */
+  var barLinks = Array.prototype.slice.call(document.querySelectorAll('.anchorbar a[href^="#"]'));
+
+  if ((localLinks.length || barLinks.length) && 'IntersectionObserver' in window) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -105,8 +108,19 @@ var LINKS = {
           var frag = (a.getAttribute('href') || '').split('#')[1];
           a.classList.toggle('active', frag === id);
         });
+        barLinks.forEach(function (a) {
+          var frag = (a.getAttribute('href') || '').split('#')[1];
+          a.classList.toggle('active', frag === id);
+        });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
+
+    /* 앵커바 대상은 section이 아닌 div인 경우도 있어 직접 관찰 목록에 추가 */
+    barLinks.forEach(function (a) {
+      var frag = (a.getAttribute('href') || '').split('#')[1];
+      var t = frag && document.getElementById(frag);
+      if (t) spy.observe(t);
+    });
 
     document.querySelectorAll('section[id]').forEach(function (s) { spy.observe(s); });
   }

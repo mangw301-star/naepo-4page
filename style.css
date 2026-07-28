@@ -268,7 +268,7 @@ header .inwrap{height:100%;display:flex;align-items:center;justify-content:space
 /* logo.png 원본 파일에 아이콘 주변 여백이 많아, 확대해 여백을 잘라냅니다 */
 .brand .mark-crop{width:50px;height:50px;border-radius:7px;overflow:hidden;flex:none;display:flex}
 .brand .mark-crop img{width:100%;height:100%;object-fit:cover;transform:scale(1.6);display:block}
-.brand strong{font-family:var(--display);font-size:1.3rem;font-weight:800;color:var(--green-deep);letter-spacing:-.01em}
+.brand strong{font-family:var(--display);font-size:1.44rem;font-weight:800;color:var(--green-deep);letter-spacing:-.01em}
 
 nav.gnb ul{display:flex;list-style:none;gap:clamp(20px,2.6vw,40px);align-items:center}
 nav.gnb a{
@@ -616,12 +616,16 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   margin-bottom:clamp(38px,5vw,56px);
 }
 .anchorbar a{
-  display:inline-flex;align-items:center;min-height:44px;
-  padding:9px 18px;border-radius:999px;border:1px solid color-mix(in srgb, var(--sage) 50%, transparent);
-  font-size:var(--fs-sm);font-weight:500;color:var(--ink-soft);transition:.2s;
+  display:inline-flex;align-items:center;min-height:50px;
+  padding:9px 21px;border-radius:999px;line-height:1.3;
+  border:1px solid color-mix(in srgb, var(--sage) 55%, transparent);
+  background:color-mix(in srgb, var(--gold) 7%, transparent);   /* 라벨이 아니라 탭으로 보이게 */
+  font-size:1.06rem;font-weight:600;color:var(--ink-soft);transition:.2s;
   white-space:nowrap;
 }
 .anchorbar a:hover{background:var(--green-deep);color:var(--cream);border-color:var(--green-deep)}
+/* 스크롤 위치에 따른 현재 탭 */
+.anchorbar a.active{background:var(--green-deep);color:var(--cream);border-color:var(--green-deep)}
 
 /* 좁은 화면에서는 줄바꿈 대신 가로 스크롤 한 줄로.
    3줄까지 늘어나면 배너 아래 150px 가까이 낭비됩니다. */
@@ -760,6 +764,23 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 }
 .cta-sub a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
 .cta-sub span{color:var(--on-dark-soft);opacity:.3}
+
+/* 좌우 분할형 CTA — 왼쪽 문구 / 오른쪽 행동 버튼 (visit) */
+.cta-split{text-align:left}
+.cta-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,4.5vw,64px);align-items:center}
+.cta-split .cta-copy p{margin-left:0;margin-right:0}
+.cta-actions{display:flex;flex-direction:column;align-items:flex-start}
+.cta-split .cta-btns{margin-top:0;justify-content:flex-start}
+.cta-split .cta-sub{margin-top:16px;justify-content:flex-start}
+/* 전화는 메인 보조 CTA — 아웃라인을 또렷하게 */
+.cta-split .cta-btns .btn-line{border-color:rgba(247,246,242,.5)}
+@media (max-width:860px){
+  .cta-grid{grid-template-columns:1fr;gap:24px}
+  .cta-split{text-align:center}
+  .cta-actions{align-items:center}
+  .cta-split .cta-btns,.cta-split .cta-sub{justify-content:center}
+  .cta-split .cta-copy p{margin-left:auto;margin-right:auto}
+}
 /* 글자 길이가 달라도 버튼 폭이 들쭉날쭉하지 않게 최소 폭을 맞춥니다 */
 .cta-btns .btn{min-width:190px}
 
@@ -962,7 +983,7 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
      투명도만 올리지 않고 입자 크기를 20% 키워 결이 실제로 보이게 합니다. */
   :root{--grain-on-light:.08;--grain-on-dark:.05;--grain-size:216px}
   .brand .mark-crop{width:42px;height:42px}
-  .brand strong{font-size:1.12rem}
+  .brand strong{font-size:1.22rem}
   /* 좁은 화면에서는 최소 폭을 풀어 버튼이 화면 밖으로 나가지 않게 */
   .cta-btns .btn{min-width:150px;flex:1 1 auto;max-width:100%}
   .hero{max-height:none}

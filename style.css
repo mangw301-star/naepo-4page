@@ -1014,6 +1014,39 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .bottom-nav{display:flex}
   footer{padding-bottom:30px}
   .car-arrow svg{width:28px;height:28px}
+
+  /* ── 모바일 여백 체계 — 배경은 full-width, 콘텐츠만 안쪽으로 ──────────
+     일반 섹션 20~24px / 철학 문구 28px / 카드 안 20px 차등 적용 */
+  .inwrap{padding-inline:clamp(20px,5.5vw,24px)}
+
+  /* 히어로 — 글이 가장자리에 붙지 않게 */
+  .hero-copy{padding-inline:24px}
+  .hero-copy p{max-width:330px}
+  .hero-cta{gap:11px}
+
+  /* 철학 문구 — 다른 섹션보다 안쪽으로 더 들어오게 */
+  #meaning .inwrap{padding-inline:28px}
+  .statement-main{max-width:320px;margin-inline:auto;line-height:1.4}
+  .statement-sub{max-width:320px;margin-inline:auto}
+
+  /* 병원소개 — 텍스트 블록은 카드보다 좁게 */
+  #about .inwrap{padding-inline:24px}
+  .about-state h2,.about-state p{max-width:330px;margin-inline:auto}
+  .about-state p{margin-top:12px}
+
+  /* 01~04 카드 — 안쪽 패딩을 줄여 글이 답답하지 않게 */
+  .phil-item{padding:21px 20px}
+  .phil-item p{line-height:1.7}
+
+  /* 딥그린 전문의 소개 — 문단 폭 제한 + 간격 확보 */
+  #preserve .inwrap{padding-inline:24px}
+  .pres-text h3{max-width:330px}
+  .pres-text p{max-width:330px;line-height:1.7;margin-top:18px}
+  .pres-text .mini{margin-top:16px}
+
+  /* 하단 고정 바 — 항목 안쪽 여백 + 콘텐츠 가림 방지 */
+  .bottom-nav a{padding:9px 6px}
+  body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
 }
 
 @media (max-width:768px){

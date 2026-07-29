@@ -144,16 +144,16 @@
       <p class="lead">내비게이션에 “내포더봄치과” 또는 “광명헤세드”를 검색하시면 됩니다.</p>
     </div>
 
-    <!--
-      ▼ 네이버 지도 삽입 방법
-      1. 네이버 지도에서 병원을 검색 → 공유 → '지도 내보내기(iframe)' 선택
-      2. 복사한 <iframe ...> 코드를 아래 .contact-map 안의 .ph 플레이스홀더와 통째로 바꿔 넣으세요.
-         예) <iframe src="지도-주소" title="내포더봄치과 위치 지도" loading="lazy" allowfullscreen></iframe>
-      3. 지도 크기는 컨테이너가 잡아주므로 width/height 속성은 지워도 됩니다.
-    -->
     <div class="contact-overview reveal">
       <div class="contact-map">
-        <div class="ph dark"><span>네이버 지도 삽입 위치 (HTML 주석 참고)</span></div>
+        <div id="naver-map" class="visit-naver-map" role="region" aria-label="내포더봄치과 위치 지도"></div>
+        <div class="map-fallback" id="mapFallback" hidden>
+          <p>지도를 불러오지 못했습니다.<br>아래 오시는 길 버튼을 이용해 주세요.</p>
+          <div class="map-fallback-links">
+            <a href="tel:041-406-8875">전화 바로 걸기</a>
+            <a href="#guide">오시는 길 확인하기</a>
+          </div>
+        </div>
       </div>
       <aside class="visit-info-panel">
         <div class="vip-block">
@@ -183,7 +183,7 @@
       </aside>
     </div>
 
-    <div class="dir-photos reveal">
+    <div class="dir-photos reveal" id="guide">
       <figure class="dir-photo"><div class="ph r-4x3 dark"><span>치과 정면 사진</span></div><figcaption><b>1</b> 건물 정면 — 1층 출입구 기준</figcaption></figure>
       <figure class="dir-photo"><div class="ph r-4x3 dark"><span>건물 전경 (다이소 보이게)</span></div><figcaption><b>2</b> 1층에 다이소가 있는 건물입니다</figcaption></figure>
       <figure class="dir-photo"><div class="ph r-4x3 dark"><span>지하주차장 입구 사진</span></div><figcaption><b>3</b> 건물 측면의 지하주차장 입구</figcaption></figure>
@@ -277,5 +277,78 @@
 </nav>
 
 <script src="app.js"></script>
+
+<!-- 네이버 지도 Web Dynamic Map API v3
+     TODO: 네이버클라우드플랫폼(NCP) > AI·NAVER API > Maps > Web Dynamic Map에서
+     발급받은 ncpKeyId로 아래 YOUR_NCP_KEY_ID를 교체하세요.
+     인증 "Web 서비스 URL"에는 경로 없이 origin만 등록해야 합니다:
+       https://mangw301-star.github.io
+     (/naepo-4page/visit.html 처럼 경로를 포함해 등록하면 인증에 실패합니다)
+     Client Secret은 절대 프론트엔드 코드에 넣지 마세요. -->
+<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=YOUR_NCP_KEY_ID"></script>
+<script>
+(function(){
+  "use strict";
+  /* TODO: 내포더봄치과 실제 좌표로 교체하세요.
+     네이버 지도에서 병원(홍북읍 신경리 588 광명헤세드) 검색 → 우클릭 → 좌표 복사 */
+  var CLINIC_LAT = null; /* TODO: 위도 (예: 36.xxxxxx) */
+  var CLINIC_LNG = null; /* TODO: 경도 (예: 126.xxxxxx) */
+  /* TODO: 네이버 플레이스/지도 URL이 확정되면 입력 — 입력 전에는 정보창에 링크가 숨겨집니다 */
+  var PLACE_URL = "";
+
+  var mapEl = document.getElementById("naver-map");
+  var fallback = document.getElementById("mapFallback");
+  if(!mapEl) return;
+
+  function showFallback(){
+    if(fallback) fallback.hidden = false;
+    mapEl.style.display = "none";
+  }
+  /* API 키 인증 실패 시 네이버가 호출하는 전역 훅 */
+  window.navermap_authFailure = showFallback;
+
+  if(!window.naver || !naver.maps || CLINIC_LAT === null || CLINIC_LNG === null){
+    showFallback();
+    return;
+  }
+
+  try{
+    var pos = new naver.maps.LatLng(CLINIC_LAT, CLINIC_LNG);
+    var map = new naver.maps.Map("naver-map", {
+      center: pos,
+      zoom: 17,
+      draggable: true,          /* 마우스·터치 드래그 이동 */
+      pinchZoom: true,          /* 두 손가락 확대·축소 */
+      keyboardShortcuts: true,  /* 방향키 이동 */
+      scrollWheel: false,       /* 페이지 스크롤 중 실수 확대 방지 */
+      zoomControl: true,
+      zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER }
+    });
+    var marker = new naver.maps.Marker({ position: pos, map: map, title: "내포더봄치과" });
+
+    var linkHtml = PLACE_URL
+      ? '<a class="nv-place" href="' + PLACE_URL + '" target="_blank" rel="noopener">네이버 지도에서 보기</a>'
+      : "";
+    var info = new naver.maps.InfoWindow({
+      content:
+        '<div class="nv-info">' +
+        '<strong>내포더봄치과</strong>' +
+        '<span>광명헤세드 6층</span>' +
+        '<a href="tel:041-406-8875">전화 041-406-8875</a>' +
+        linkHtml +
+        "</div>",
+      borderWidth: 0,
+      backgroundColor: "transparent",
+      disableAnchor: true
+    });
+    naver.maps.Event.addListener(marker, "click", function(){
+      if(info.getMap()) info.close();
+      else info.open(map, marker);
+    });
+  }catch(e){
+    showFallback();
+  }
+})();
+</script>
 </body>
 </html>

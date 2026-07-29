@@ -289,10 +289,14 @@
 <script>
 (function(){
   "use strict";
-  /* TODO: 내포더봄치과 실제 좌표로 교체하세요.
-     네이버 지도에서 병원(홍북읍 신경리 588 광명헤세드) 검색 → 우클릭 → 좌표 복사 */
+  /* 내포더봄치과 좌표 (WGS84) — 충청남도 홍성군 홍북읍 신경리 588 광명헤세드 6층
+     TODO: 아래 두 값을 확정 좌표로 교체하세요. 확인 방법 두 가지 중 하나:
+       (1) 네이버 지도에서 위 주소 검색 → 해당 위치 우클릭 → '이 위치의 좌표 복사'
+       (2) tools/geocode.ps1 을 로컬에서 1회 실행 (네이버 Geocoding API, 자격증명은 환경변수)
+     좌표는 상수로만 저장하며, 페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
   var CLINIC_LAT = null; /* TODO: 위도 (예: 36.xxxxxx) */
   var CLINIC_LNG = null; /* TODO: 경도 (예: 126.xxxxxx) */
+  /* TODO: 스마트플레이스 등록 후 공식 핀 위치와 좌표 최종 대조 */
   /* TODO: 네이버 플레이스/지도 URL이 확정되면 입력 — 입력 전에는 정보창에 링크가 숨겨집니다 */
   var PLACE_URL = "";
 
@@ -313,9 +317,9 @@
   }
 
   try{
-    var pos = new naver.maps.LatLng(CLINIC_LAT, CLINIC_LNG);
+    var CLINIC_POSITION = new naver.maps.LatLng(CLINIC_LAT, CLINIC_LNG);
     var map = new naver.maps.Map("naver-map", {
-      center: pos,
+      center: CLINIC_POSITION,
       zoom: 17,
       draggable: true,          /* 마우스·터치 드래그 이동 */
       pinchZoom: true,          /* 두 손가락 확대·축소 */
@@ -324,7 +328,7 @@
       zoomControl: true,
       zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER }
     });
-    var marker = new naver.maps.Marker({ position: pos, map: map, title: "내포더봄치과" });
+    var marker = new naver.maps.Marker({ position: CLINIC_POSITION, map: map, title: "내포더봄치과" });
 
     var linkHtml = PLACE_URL
       ? '<a class="nv-place" href="' + PLACE_URL + '" target="_blank" rel="noopener">네이버 지도에서 보기</a>'

@@ -291,8 +291,8 @@
   "use strict";
   /* 내포더봄치과 좌표 (WGS84) — 충청남도 홍성군 홍북읍 신경리 588 광명헤세드 6층
      TODO: 아래 두 값을 확정 좌표로 교체하세요. 확인 방법 두 가지 중 하나:
-       (1) 네이버 지도에서 위 주소 검색 → 해당 위치 우클릭 → '이 위치의 좌표 복사'
-       (2) tools/geocode.ps1 을 로컬에서 1회 실행 (네이버 Geocoding API, 자격증명은 환경변수)
+       (1) tools/find-coords.html 을 브라우저로 열고 ncpKeyId 입력 → 좌표 출력 (권장)
+       (2) tools/geocode.ps1 을 로컬에서 1회 실행 (자격증명은 환경변수로만 전달)
      좌표는 상수로만 저장하며, 페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
   var CLINIC_LAT = null; /* TODO: 위도 (예: 36.xxxxxx) */
   var CLINIC_LNG = null; /* TODO: 경도 (예: 126.xxxxxx) */

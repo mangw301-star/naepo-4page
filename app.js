@@ -12,7 +12,10 @@
    -------------------------------------------------------------------------- */
 var LINKS = {
   booking : '',   // 네이버 예약   예) https://booking.naver.com/booking/13/bizes/000000
-  place   : '',   // 네이버 플레이스 예) https://map.naver.com/p/entry/place/0000000000
+  // 개원 후 네이버 플레이스가 등록되면 아래 주소를 플레이스 주소로 교체하세요.
+  // 예) https://map.naver.com/p/entry/place/0000000000
+  // 그전까지는 주소 검색 링크를 써서 버튼이 비어 있지 않게 합니다.
+  place   : 'https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%ED%99%8D%EC%84%B1%EA%B5%B0%20%ED%99%8D%EB%B6%81%EC%9D%8D%20%EC%B2%AD%EC%82%AC%EB%A1%9C150%EB%B2%88%EA%B8%B8%2020',
   blog    : 'https://blog.naver.com/den_read',   // 네이버 블로그  예) https://blog.naver.com/아이디
   kakao   : ''    // 카카오톡 채널  예) https://pf.kakao.com/_xxxxxx
 };

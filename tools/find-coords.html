@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내포더봄치과 좌표 찾기 (1회용 도구)</title>
+<!--
+  이 파일은 홈페이지가 아닙니다. 좌표를 한 번 확인하기 위한 도구입니다.
+  홈페이지(visit.html)는 이 파일이나 Geocoding API를 호출하지 않습니다.
+
+  사용법
+   1) 네이버클라우드플랫폼에서 Maps 이용 신청 후 ncpKeyId(=Client ID)를 받습니다.
+      - Web Dynamic Map : 홈페이지 지도 표시용
+      - Geocoding       : 주소 -> 좌표 변환용 (이 도구가 사용)
+      Web 서비스 URL 등록에 http://localhost 를 함께 넣어두면 로컬에서도 동작합니다.
+   2) 이 파일을 브라우저로 열고, 아래 칸에 키를 붙여넣은 뒤 [좌표 찾기]를 누릅니다.
+   3) 화면에 나온 위도/경도 두 줄을 visit.html 에 옮겨 적습니다.
+
+  Client Secret 은 필요하지 않으며, 절대 입력하지 마세요.
+-->
+<style>
+  body{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;max-width:640px;margin:48px auto;padding:0 20px;line-height:1.7;color:#1f2b24}
+  h1{font-size:20px;margin-bottom:6px}
+  p.sub{color:#6b6a63;font-size:14px;margin-top:0}
+  label{display:block;font-size:14px;font-weight:600;margin:22px 0 6px}
+  input{width:100%;padding:12px 14px;font-size:15px;border:1px solid #c7d3c7;border-radius:6px;box-sizing:border-box}
+  button{margin-top:14px;padding:13px 26px;font-size:15px;font-weight:600;color:#fff;background:#b65e36;border:0;border-radius:6px;cursor:pointer}
+  button:disabled{opacity:.5;cursor:default}
+  pre{background:#f1ebe1;border:1px solid #e0d7c8;border-radius:8px;padding:18px;font-size:14px;white-space:pre-wrap;word-break:break-all;margin-top:24px}
+  .err{color:#9e4f2f;font-weight:600}
+</style>
+</head>
+<body>
+
+<h1>내포더봄치과 좌표 찾기</h1>
+<p class="sub">충청남도 홍성군 홍북읍 신경리 588 · 네이버 공식 Geocoding 사용</p>
+
+<label for="key">네이버 지도 ncpKeyId (Client ID)</label>
+<input id="key" type="text" placeholder="예: abcd1234efgh" autocomplete="off" spellcheck="false">
+<button id="run" type="button">좌표 찾기</button>
+
+<pre id="out">키를 입력하고 [좌표 찾기]를 누르세요.</pre>
+
+<script>
+(function(){
+  "use strict";
+  var ADDRESS = "충청남도 홍성군 홍북읍 신경리 588";
+  var out = document.getElementById("out");
+  var btn = document.getElementById("run");
+
+  function print(msg, isErr){
+    out.innerHTML = isErr ? '<span class="err">' + msg + '</span>' : msg;
+  }
+
+  btn.addEventListener("click", function(){
+    var key = document.getElementById("key").value.trim();
+    if(!key){ print("키를 먼저 입력하세요.", true); return; }
+    if(window.naver && window.naver.maps){ geocode(); return; }
+
+    btn.disabled = true;
+    print("네이버 지도 API를 불러오는 중…");
+
+    window.navermap_authFailure = function(){
+      btn.disabled = false;
+      print("키 인증에 실패했습니다.\n키가 맞는지, 그리고 Web 서비스 URL에 http://localhost 가 등록돼 있는지 확인하세요.", true);
+    };
+
+    var s = document.createElement("script");
+    s.src = "https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=" +
+            encodeURIComponent(key) + "&submodules=geocoder";
+    s.onload = function(){ btn.disabled = false; geocode(); };
+    s.onerror = function(){
+      btn.disabled = false;
+      print("API 스크립트를 불러오지 못했습니다. 인터넷 연결을 확인하세요.", true);
+    };
+    document.head.appendChild(s);
+  });
+
+  function geocode(){
+    if(!naver.maps.Service || !naver.maps.Service.geocode){
+      print("Geocoding 모듈을 사용할 수 없습니다.\n네이버클라우드플랫폼에서 Geocoding 이용 신청이 되어 있는지 확인하세요.", true);
+      return;
+    }
+    print("주소를 변환하는 중…");
+    naver.maps.Service.geocode({ query: ADDRESS }, function(status, response){
+      if(status !== naver.maps.Service.Status.OK){
+        print("변환에 실패했습니다. Geocoding 이용 신청 여부를 확인하세요.", true);
+        return;
+      }
+      var list = response.v2.addresses || [];
+      if(!list.length){ print("해당 주소의 좌표를 찾지 못했습니다.", true); return; }
+
+      var a = list[0];
+      print(
+        "도로명 : " + (a.roadAddress || "-") + "\n" +
+        "지번   : " + (a.jibunAddress || "-") + "\n\n" +
+        "── visit.html 에 아래 두 줄을 옮겨 적으세요 ──\n" +
+        "  var CLINIC_LAT = " + a.y + ";\n" +
+        "  var CLINIC_LNG = " + a.x + ";"
+      );
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

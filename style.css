@@ -723,8 +723,38 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   display:grid;grid-template-columns:minmax(0,58fr) minmax(340px,42fr);
   gap:20px;align-items:stretch;margin-bottom:clamp(34px,4.5vw,48px);
 }
-.contact-map{border:1px solid var(--on-dark-line);border-radius:13px;overflow:hidden;min-height:500px}
+.contact-map{border:1px solid var(--on-dark-line);border-radius:14px;overflow:hidden;min-height:500px;position:relative}
 .contact-map .ph,.contact-map iframe{display:block;width:100%;height:100%;border:0;border-radius:0}
+/* 네이버 동적 지도 — 로드 전에도 컨테이너 높이를 그대로 유지해 layout shift 방지 */
+.visit-naver-map{width:100%;height:100%;min-height:inherit}
+/* 지도 로드 실패 안내 — 성공 시에는 hidden 속성으로 감춰짐 */
+.map-fallback{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;
+  text-align:center;padding:24px;background:rgba(255,255,255,.03);
+}
+.map-fallback[hidden]{display:none}
+.map-fallback p{color:var(--on-dark);font-size:var(--fs-base);line-height:1.7;word-break:keep-all}
+.map-fallback .mf-addr{color:var(--cream);font-weight:600;margin-bottom:-6px}
+.map-fallback-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.map-fallback-links a{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;
+  border:1px solid rgba(247,246,242,.28);border-radius:var(--r-sm);
+  font-size:15px;font-weight:600;color:var(--on-dark-soft);
+  transition:background .2s;
+}
+.map-fallback-links a:hover{background:rgba(247,243,233,.1)}
+/* 마커 클릭 정보창 — 웜아이보리 배경 + 딥그린 제목 + 테라코타 포인트 */
+.nv-info{
+  display:grid;gap:4px;min-width:190px;
+  background:var(--cream);border:1px solid var(--cream-deep);border-radius:10px;
+  padding:14px 18px;box-shadow:0 6px 18px rgba(4,28,20,.18);
+  font-family:var(--body,inherit);
+}
+.nv-info strong{font-size:15.5px;font-weight:700;color:var(--green-deep)}
+.nv-info span{font-size:13px;color:var(--ink-soft)}
+.nv-info a{font-size:13.5px;font-weight:600;color:var(--accent)}
+.nv-info a.nv-place{margin-top:2px}
 .visit-info-panel{
   background:rgba(255,255,255,.045);border:1px solid var(--on-dark-line);
   border-radius:13px;padding:24px;
@@ -735,6 +765,8 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .visit-info-panel p{color:var(--cream);font-size:var(--fs-base);line-height:1.62;word-break:keep-all}
 .vip-block a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:0 -2px;font-size:calc(var(--fs-base) + 3px);font-weight:700}
 .vip-block a:hover{color:var(--gold-soft)}
+/* 도로명주소 아래 지번 병기 — 예전 주소로 찾는 분들을 위한 보조 줄 */
+.visit-info-panel .vip-jibun{margin-top:6px;font-size:var(--fs-sm);color:var(--sage)}
 /* 진료시간 아래 작은 주차 안내 */
 .vip-parking{margin-top:10px;font-size:var(--fs-sm);color:var(--gold-soft);font-weight:600}
 .vip-links{margin-top:auto;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -1049,7 +1081,7 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .dir-steps{grid-template-columns:1fr;gap:16px}
   /* 방문정보 패널 먼저, 지도는 그다음 (지도 높이는 모바일용으로 축소) */
   .contact-overview{grid-template-columns:1fr}
-  .contact-map{order:2;min-height:0;height:clamp(300px,80vw,360px)}
+  .contact-map{order:2;min-height:0;height:clamp(340px,95vw,380px)}
   .visit-info-panel{order:1}
 }
 

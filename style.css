@@ -764,6 +764,8 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .visit-info-panel p{color:var(--cream);font-size:var(--fs-base);line-height:1.62;word-break:keep-all}
 .vip-block a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:0 -2px;font-size:calc(var(--fs-base) + 3px);font-weight:700}
 .vip-block a:hover{color:var(--gold-soft)}
+/* 도로명주소 아래 지번 병기 — 예전 주소로 찾는 분들을 위한 보조 줄 */
+.visit-info-panel .vip-jibun{margin-top:6px;font-size:var(--fs-sm);color:var(--sage)}
 /* 진료시간 아래 작은 주차 안내 */
 .vip-parking{margin-top:10px;font-size:var(--fs-sm);color:var(--gold-soft);font-weight:600}
 .vip-links{margin-top:auto;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}

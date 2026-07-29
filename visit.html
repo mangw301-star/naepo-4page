@@ -289,13 +289,12 @@
 <script>
 (function(){
   "use strict";
-  /* 내포더봄치과 좌표 (WGS84) — 충청남도 홍성군 홍북읍 신경리 588 광명헤세드 6층
-     TODO: 아래 두 값을 확정 좌표로 교체하세요. 확인 방법 두 가지 중 하나:
-       (1) tools/find-coords.html 을 브라우저로 열고 ncpKeyId 입력 → 좌표 출력 (권장)
-       (2) tools/geocode.ps1 을 로컬에서 1회 실행 (자격증명은 환경변수로만 전달)
-     좌표는 상수로만 저장하며, 페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
-  var CLINIC_LAT = null; /* TODO: 위도 (예: 36.xxxxxx) */
-  var CLINIC_LNG = null; /* TODO: 경도 (예: 126.xxxxxx) */
+  /* 내포더봄치과 좌표 (WGS84)
+     네이버 공식 Geocoding 결과 — 충청남도 홍성군 홍북읍 청사로150번길 20 광명헤세드
+     (지번: 신경리 588). tools/find-coords.html 로 1회 확인한 값이며,
+     페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
+  var CLINIC_LAT = 36.657027;
+  var CLINIC_LNG = 126.680753;
   /* TODO: 스마트플레이스 등록 후 공식 핀 위치와 좌표 최종 대조 */
   /* TODO: 네이버 플레이스/지도 URL이 확정되면 입력 — 입력 전에는 정보창에 링크가 숨겨집니다 */
   var PLACE_URL = "";

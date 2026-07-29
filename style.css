@@ -646,6 +646,15 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   }
   .anchorbar::-webkit-scrollbar{display:none}
   .anchorbar a{flex:none}
+  /* 진료공간 페이지(탭 3개)는 스크롤 없이 화면 폭에 고정 */
+  #interior .anchorbar{
+    flex-wrap:nowrap;overflow:visible;justify-content:center;
+    position:static;width:auto;max-width:none;left:auto;margin-left:0;padding:0;gap:7px;
+  }
+  #interior .anchorbar a{flex:1 1 auto;justify-content:center;min-height:46px;padding:9px 6px;font-size:.95rem}
+}
+@media (max-width:360px){
+  #interior .anchorbar a{font-size:.88rem;padding:9px 4px}
 }
 
 /* 8-9. 캐러셀 (진료공간 투어 전용) */
@@ -1032,8 +1041,9 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .brand{gap:9px}
   .brand .mark-crop{width:40px;height:40px}
   .brand strong{font-size:21px}
-  /* 좁은 화면에서는 최소 폭을 풀어 버튼이 화면 밖으로 나가지 않게 */
-  .cta-btns .btn{min-width:150px;flex:1 1 auto;max-width:100%}
+  /* 좁은 화면에서는 최소 폭을 풀어 버튼이 화면 밖으로 나가지 않게.
+     flex-basis 0 — 글자 수가 달라도 두 버튼 폭을 똑같이 나눕니다 */
+  .cta-btns .btn{min-width:150px;flex:1 1 0;max-width:100%}
   .hero{max-height:none}
   .hero-overlay{background:linear-gradient(180deg,rgba(5,33,21,.42),rgba(5,33,21,.76))}
   .pagecards{gap:14px}

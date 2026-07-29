@@ -718,10 +718,35 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   font-size:.7rem;font-weight:700;
   display:inline-flex;align-items:center;justify-content:center;
 }
-.dir-photo.wide{grid-column:span 2}
-
-.map-embed{border:1px solid var(--on-dark-line);border-radius:var(--r-md);overflow:hidden;margin-bottom:clamp(34px,4.5vw,48px)}
-.map-embed iframe{display:block;width:100%;height:clamp(300px,42vw,440px);border:0}
+/* 지도 + 통합 방문정보 패널 — 카드 3장 대신 좌우 한 덩어리 */
+.contact-overview{
+  display:grid;grid-template-columns:minmax(0,58fr) minmax(340px,42fr);
+  gap:20px;align-items:stretch;margin-bottom:clamp(34px,4.5vw,48px);
+}
+.contact-map{border:1px solid var(--on-dark-line);border-radius:13px;overflow:hidden;min-height:500px}
+.contact-map .ph,.contact-map iframe{display:block;width:100%;height:100%;border:0;border-radius:0}
+.visit-info-panel{
+  background:rgba(255,255,255,.045);border:1px solid var(--on-dark-line);
+  border-radius:13px;padding:24px;
+  display:flex;flex-direction:column;
+}
+.vip-block+.vip-block{margin-top:12px;padding-top:12px;border-top:1px solid var(--on-dark-line)}
+.visit-info-panel h3{font-size:var(--fs-sm);color:var(--gold-soft);font-weight:700;letter-spacing:.02em;margin-bottom:8px}
+.visit-info-panel p{color:var(--cream);font-size:var(--fs-base);line-height:1.62;word-break:keep-all}
+.vip-block a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:0 -2px;font-size:calc(var(--fs-base) + 3px);font-weight:700}
+.vip-block a:hover{color:var(--gold-soft)}
+/* 진료시간 아래 작은 주차 안내 */
+.vip-parking{margin-top:10px;font-size:var(--fs-sm);color:var(--gold-soft);font-weight:600}
+.vip-links{margin-top:auto;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vip-links a{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  border:1px solid rgba(247,246,242,.28);border-radius:var(--r-sm);
+  font-size:15px;font-weight:600;color:var(--on-dark-soft);
+  transition:background .2s,border-color .2s;
+}
+.vip-links a:hover{background:rgba(247,243,233,.1)}
+/* 플레이스 URL이 연결되기 전(href="#")에는 비활성으로 표시 */
+.vip-links a[data-link][href="#"]{opacity:.5;pointer-events:none}
 
 .dir-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:clamp(34px,4.5vw,48px)}
 /* 안내 패널 — 다크 배경 위 은은한 정보 블록 */
@@ -747,19 +772,8 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .dir-col ul li::before{content:"";position:absolute;left:5px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--sage)}
 .dir-col b{color:var(--sage-soft)}
 
-/* 핵심 정보(주소·전화·진료시간) — 섹션 맨 위 정보 카드 3장 */
-.dir-info{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:clamp(34px,4.5vw,48px)}
-.dir-info > div{
-  background:rgba(255,255,255,.045);
-  border:1px solid var(--on-dark-line);
-  border-radius:13px;padding:clamp(24px,2.6vw,32px);
-}
-.dir-info h3{font-size:var(--fs-sm);color:var(--gold-soft);font-weight:700;letter-spacing:.02em;margin-bottom:12px}
-.dir-info p{color:var(--cream);font-size:var(--fs-base);line-height:1.62;word-break:keep-all}
-.dir-info a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;margin:0 -2px;font-size:calc(var(--fs-base) + 3px);font-weight:700}
-.dir-info a:hover{color:var(--gold-soft)}
 .time-table{width:100%;border-collapse:collapse}
-.time-table td{padding:6px 0;border-bottom:1px solid var(--on-dark-line);font-size:var(--fs-sm);color:var(--on-dark)}
+.time-table td{padding:5px 0;border-bottom:1px solid var(--on-dark-line);font-size:var(--fs-sm);color:var(--on-dark)}
 .time-table td:last-child{text-align:right}
 .time-table tr.off td{color:var(--sage)}
 
@@ -1032,8 +1046,11 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .pres-row.flip .pres-text{order:0}
   .split > .ph{order:-1}
   .stack > .split:nth-child(even) > .info{order:0}
-  .dir-steps,.dir-info{grid-template-columns:1fr}
-  .dir-info{gap:22px}
+  .dir-steps{grid-template-columns:1fr;gap:16px}
+  /* 방문정보 패널 먼저, 지도는 그다음 (지도 높이는 모바일용으로 축소) */
+  .contact-overview{grid-template-columns:1fr}
+  .contact-map{order:2;min-height:0;height:clamp(300px,80vw,360px)}
+  .visit-info-panel{order:1}
 }
 
 @media (max-width:760px){
@@ -1081,8 +1098,7 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .phil-item .n{font-size:22px;margin-bottom:14px}
   .phil-item h3{font-size:21px;margin-bottom:18px}
   .phil-item p{font-size:16px;line-height:1.78}
-  .dir-photos{grid-template-columns:1fr}
-  .dir-photo.wide{grid-column:auto}
+  .dir-photos{grid-template-columns:1fr;gap:24px}
   .quick{display:none}
   .bottom-nav{display:grid}
   footer{padding-bottom:30px}
@@ -1156,6 +1172,6 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .block::after,.cta::after,footer::after,.hero::after,.page-hero::before,.tex::after{display:none!important}
   body{padding:0;background:#fff}
   .block.forest,.cta,footer,.page-hero{background:#fff;color:#000}
-  .block.forest .sec-head h2,.dir-col h3,.dir-info p,
+  .block.forest .sec-head h2,.dir-col h3,.visit-info-panel p,
   footer .f-col p,footer .f-brand strong,footer .legal{color:#000}
 }

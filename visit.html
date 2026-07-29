@@ -147,11 +147,14 @@
     <div class="contact-overview reveal">
       <div class="contact-map">
         <div id="naver-map" class="visit-naver-map" role="region" aria-label="내포더봄치과 위치 지도"></div>
+        <!-- 지도 API 키가 없거나(개원 전) 지도 로드에 실패했을 때 표시되는 대체 안내.
+             네이버 지도 링크는 API 키 없이도 동작합니다. -->
         <div class="map-fallback" id="mapFallback" hidden>
-          <p>지도를 불러오지 못했습니다.<br>아래 오시는 길 버튼을 이용해 주세요.</p>
+          <p class="mf-addr">충청남도 홍성군 홍북읍<br>청사로150번길 20 광명헤세드 6층</p>
+          <p>네이버 지도에서 위치를 확인하실 수 있습니다.</p>
           <div class="map-fallback-links">
+            <a href="https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%ED%99%8D%EC%84%B1%EA%B5%B0%20%ED%99%8D%EB%B6%81%EC%9D%8D%20%EC%B2%AD%EC%82%AC%EB%A1%9C150%EB%B2%88%EA%B8%B8%2020" target="_blank" rel="noopener">네이버 지도에서 열기</a>
             <a href="tel:041-406-8875">전화 바로 걸기</a>
-            <a href="#guide">오시는 길 확인하기</a>
           </div>
         </div>
       </div>
@@ -290,9 +293,10 @@
 <script>
 (function(){
   "use strict";
-  /* 내포더봄치과 좌표 (WGS84)
-     네이버 공식 Geocoding 결과 — 충청남도 홍성군 홍북읍 청사로150번길 20 광명헤세드
-     (지번: 신경리 588). tools/find-coords.html 로 1회 확인한 값이며,
+  /* 내포더봄치과 좌표 (WGS84) — 청사로150번길 20 광명헤세드 (지번: 신경리 588)
+     출처: 외부 주소-좌표 변환 사이트. 네이버 공식 Geocoding으로 재확인하지는
+     못했지만, OpenStreetMap 오픈데이터의 '청사로150번길' 위치와 약 60m 이내로
+     일치해 같은 도로·같은 블록임을 확인했습니다.
      페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
   var CLINIC_LAT = 36.657027;
   var CLINIC_LNG = 126.680753;

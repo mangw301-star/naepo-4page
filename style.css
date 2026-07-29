@@ -735,6 +735,7 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 }
 .map-fallback[hidden]{display:none}
 .map-fallback p{color:var(--on-dark);font-size:var(--fs-base);line-height:1.7;word-break:keep-all}
+.map-fallback .mf-addr{color:var(--cream);font-weight:600;margin-bottom:-6px}
 .map-fallback-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .map-fallback-links a{
   display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;

@@ -262,6 +262,8 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 .btn-green:active{filter:brightness(.94)}
 .btn-line{background:transparent;color:var(--on-dark-soft);border:1px solid rgba(247,246,242,.45)}
 .btn-line:hover{background:rgba(247,243,233,.12)}
+/* URL이 아직 없는 링크 — app.js가 aria-disabled와 함께 부여 */
+a.link-off{cursor:default}
 .btn-ink{background:var(--green-deep);color:var(--cream)}
 .btn-ink:hover{background:var(--forest)}
 .btn-ghost{background:transparent;color:var(--green-deep);border:1px solid var(--sage)}
@@ -667,6 +669,16 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   #interior .anchorbar a{font-size:.88rem;padding:9px 4px}
 }
 
+/* 진료과목 — 페이지를 3개 대그룹(주요 진료/디지털/턱관절)으로 묶는 그룹 헤더 */
+.tx-group{display:flex;align-items:center;gap:14px;margin-bottom:clamp(30px,4vw,44px)}
+.tx-group-num{font-size:15px;font-weight:600;color:var(--sage);letter-spacing:.06em}
+.tx-group h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(1.45rem,1.2rem + 1vw,1.85rem);
+  color:var(--green-deep);word-break:keep-all;white-space:nowrap;
+}
+.tx-group::after{content:"";flex:1;height:1px;background:rgba(53,87,68,.16)}
+
 /* 8-9. 캐러셀 (진료공간 투어 전용) */
 .car{position:relative}
 .car-viewport{overflow:hidden;position:relative}
@@ -1025,7 +1037,7 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 .quick a.top{background:var(--cream);color:var(--green-deep);border:1px solid var(--sage-soft);box-shadow:none}
 .quick svg{width:24px;height:24px}
 
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--forest);border-top:1px solid var(--on-dark-line);padding-bottom:env(safe-area-inset-bottom);grid-template-columns:repeat(4,1fr)}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--forest);border-top:1px solid rgba(247,246,242,.08);padding-bottom:env(safe-area-inset-bottom);grid-template-columns:repeat(4,1fr)}
 /* 항목 = 2행 그리드: 아이콘 행 28px 고정 + 라벨 행 — 네 항목의 기준선 통일 */
 .bottom-nav a{display:grid;grid-template-rows:28px auto;justify-items:center;align-items:center;row-gap:6px;padding:8px 4px;font-size:.68rem;line-height:1;color:var(--on-dark);font-weight:500}
 .bottom-nav svg{width:24px;height:24px;display:block;flex-shrink:0}
@@ -1091,6 +1103,13 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 }
 
 @media (max-width:640px){
+  /* 모바일 푸터 하단 — 세 줄(병원 정보/개인정보처리방침/카피라이트)로 정리,
+     Copyright 풀 문구와 가운데 점은 숨김 */
+  footer .legal{display:grid;gap:8px;line-height:1.55}
+  footer .legal br,footer .legal .lg-mid,footer .legal .lg-full{display:none}
+  footer .legal .lg-line{font-size:14px}
+  footer .legal a{font-size:14px;font-weight:600;justify-self:start}
+  footer .legal .lg-copy{font-size:12px;opacity:.8}
   .certs{grid-template-columns:1fr;max-width:330px}
   .symptoms ul{grid-template-columns:1fr;gap:12px}
   /* 진료 범위·설명형 진료 — 모바일 1열, 항목 사이 가로 헤어라인 */
@@ -1100,8 +1119,7 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 }
 
 @media (max-width:600px){
-  :root{--header-h:70px;--pad-block:68px}
-  body{padding-bottom:66px}
+  :root{--header-h:70px;--pad-block:68px;--mobile-bottom-nav-height:66px}
   /* 텍스처는 면마다 absolute로 깔려 스크롤 성능 부담이 없으므로 모바일에서도 유지.
      투명도만 올리지 않고 입자 크기를 20% 키워 결이 실제로 보이게 합니다. */
   :root{--grain-on-light:.08;--grain-on-dark:.05;--grain-size:216px}
@@ -1133,7 +1151,6 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .dir-photos{grid-template-columns:1fr;gap:24px}
   .quick{display:none}
   .bottom-nav{display:grid}
-  footer{padding-bottom:30px}
   .car-arrow svg{width:28px;height:28px}
 
   /* ── 모바일 여백 체계 — 배경은 full-width, 콘텐츠만 안쪽으로 ──────────
@@ -1175,8 +1192,10 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .pres-text p{max-width:330px;line-height:1.7;margin-top:18px}
   .pres-text .mini{margin-top:16px}
 
-  /* 하단 고정 바에 푸터가 가리지 않게 — 바 높이 + iOS 안전영역 */
-  body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+  /* 하단 고정 바 클리어런스 — body가 아니라 어두운 푸터에 주어
+     푸터와 고정바 사이에 밝은 베이지 띠가 생기지 않게 합니다 */
+  body{padding-bottom:0}
+  footer{padding-bottom:calc(var(--mobile-bottom-nav-height) + 24px + env(safe-area-inset-bottom))}
 }
 
 @media (max-width:768px){

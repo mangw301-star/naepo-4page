@@ -37,12 +37,20 @@ var LINKS = {
     if (!url && nodes.length) unset.push(key);
     nodes.forEach(function (el) {
       if (url) {
+        // URL이 채워지면 정상 링크로 활성화
         el.setAttribute('href', url);
         el.setAttribute('target', '_blank');
         el.setAttribute('rel', 'noopener');
+        el.removeAttribute('aria-disabled');
+        el.removeAttribute('tabindex');
+        el.classList.remove('link-off');
+      } else {
+        // URL이 비어 있는 동안엔 접근성 트리와 탭 순서에서 제외하고 클릭을 막습니다.
+        el.setAttribute('aria-disabled', 'true');
+        el.setAttribute('tabindex', '-1');
+        el.classList.add('link-off');
+        el.addEventListener('click', function (e) { e.preventDefault(); });
       }
-      // 주소가 없어도 지금은 버튼을 그대로 보여줍니다(레이아웃 확인용).
-      // 실제 주소를 넣기 전까지는 href="#"라 눌러도 아무 동작 안 함에 유의하세요.
     });
   });
   if (unset.length && window.console) {

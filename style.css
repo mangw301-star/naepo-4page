@@ -793,21 +793,34 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .cta-btns .btn{min-width:190px}
 
 /* 공통 하단 CTA(.shared-bottom-cta) — 의료진/진료과목/진료공간 3곳 전용.
-   좌 54% 문구 / 우 46% 행동 영역, 주 버튼 2개 동일 폭 + 보조 텍스트 링크 2개 */
-.shared-bottom-cta .cta-grid{grid-template-columns:54fr 46fr}
-.shared-bottom-cta .cta-actions{align-items:stretch}
-.shared-bottom-cta .cta-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.shared-bottom-cta .cta-btns .btn{min-width:0}
-.shared-bottom-cta .cta-sub a{color:var(--gold-soft);opacity:1}
-.shared-bottom-cta .cta-sub a:hover{text-decoration:none;color:color-mix(in srgb, var(--gold-soft) 55%, white)}
+   좌 52% 라벨+문구 / 연한 세로 구분선 / 우 48% 버튼 2개 + 보조 링크 2개 */
+.cta.shared-bottom-cta{padding:78px 0}
+.shared-bottom-cta .cta-grid{grid-template-columns:52fr 1px 48fr;column-gap:32px}
+.shared-bottom-cta .cta-label{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;letter-spacing:.14em;color:var(--gold-soft);margin:0 0 14px}
+.shared-bottom-cta .cta-label::before{content:"";width:22px;height:1px;background:color-mix(in srgb, var(--gold-soft) 55%, transparent)}
+.shared-bottom-cta h2{color:var(--on-dark-soft);line-height:1.32;min-height:2.64em}
+.shared-bottom-cta .cta-copy > p:not(.cta-label){color:var(--on-dark);margin-top:16px;max-width:26em}
+.cta-divider{width:1px;height:70%;min-height:110px;align-self:center;background:rgba(247,246,242,.10)}
+.shared-bottom-cta .cta-actions{align-items:flex-start}
+.shared-bottom-cta .cta-btns{display:flex;gap:13px}
+.shared-bottom-cta .cta-btns .btn{width:200px;min-width:0;height:54px;padding:0 10px}
+.shared-bottom-cta .cta-btns .btn-line{border-color:rgba(247,246,242,.34)}
+.shared-bottom-cta .cta-sub{margin-top:20px;gap:18px}
+.shared-bottom-cta .cta-sub a{color:var(--gold-soft);opacity:1;font-size:16px;font-weight:600}
+.shared-bottom-cta .cta-sub a:hover{text-decoration:none;color:var(--on-dark-soft)}
 .shared-bottom-cta .cta-sub span{color:var(--gold-soft);opacity:.45}
 @media (max-width:860px){
-  /* 위의 54/46 분할이 모바일 1열 전환을 덮어쓰지 않게 되돌립니다 */
+  .cta.shared-bottom-cta{padding:66px 0}
   .shared-bottom-cta .cta-grid{grid-template-columns:1fr}
+  .cta-divider{display:none}
+  .shared-bottom-cta .cta-actions{align-items:center}
+  .shared-bottom-cta .cta-label{justify-content:center}
+  .shared-bottom-cta .cta-copy > p:not(.cta-label){margin-inline:auto}
+  .shared-bottom-cta .cta-btns{display:grid;grid-template-columns:repeat(2,1fr);width:100%;max-width:430px}
+  .shared-bottom-cta .cta-btns .btn{width:auto}
 }
 @media (max-width:600px){
   .shared-bottom-cta .inwrap{padding-inline:23px}
-  .shared-bottom-cta .cta-btns .btn{padding:13px 10px}
 }
 @media (max-width:360px){
   .shared-bottom-cta .cta-btns{grid-template-columns:1fr}

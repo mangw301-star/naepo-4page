@@ -802,13 +802,16 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .shared-bottom-cta .cta-copy > p:not(.cta-label){color:var(--on-dark);margin-top:16px;max-width:26em}
 .cta-divider{width:1px;height:70%;min-height:110px;align-self:center;background:rgba(247,246,242,.10)}
 .shared-bottom-cta .cta-actions{align-items:flex-start}
-.shared-bottom-cta .cta-btns{display:flex;gap:13px}
-.shared-bottom-cta .cta-btns .btn{width:200px;min-width:0;height:54px;padding:0 10px}
+/* 2+1 그리드 — 첫 행: 예약/전화, 둘째 행: 오시는 길 확인하기(전체 폭) */
+.shared-bottom-cta .cta-btns{display:grid;grid-template-columns:repeat(2,200px);gap:11px 13px}
+.shared-bottom-cta .cta-btns .btn{min-width:0;height:54px;padding:0 10px}
 .shared-bottom-cta .cta-btns .btn-line{border-color:rgba(247,246,242,.34)}
-.shared-bottom-cta .cta-sub{margin-top:20px;gap:18px}
-.shared-bottom-cta .cta-sub a{color:var(--gold-soft);opacity:1;font-size:16px;font-weight:600}
-.shared-bottom-cta .cta-sub a:hover{text-decoration:none;color:var(--on-dark-soft)}
-.shared-bottom-cta .cta-sub span{color:var(--gold-soft);opacity:.45}
+.shared-bottom-cta .cta-btns .cta-directions{
+  grid-column:1 / -1;height:46px;gap:8px;
+  background:rgba(247,246,242,.035);color:var(--gold-soft);
+  border:1px solid rgba(247,246,242,.14);
+}
+.shared-bottom-cta .cta-btns .cta-directions:hover{background:rgba(247,246,242,.07);border-color:rgba(247,246,242,.24)}
 @media (max-width:860px){
   .cta.shared-bottom-cta{padding:66px 0}
   .shared-bottom-cta .cta-grid{grid-template-columns:1fr}
@@ -816,13 +819,12 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
   .shared-bottom-cta .cta-actions{align-items:center}
   .shared-bottom-cta .cta-label{justify-content:center}
   .shared-bottom-cta .cta-copy > p:not(.cta-label){margin-inline:auto}
-  .shared-bottom-cta .cta-btns{display:grid;grid-template-columns:repeat(2,1fr);width:100%;max-width:430px}
-  .shared-bottom-cta .cta-btns .btn{width:auto}
+  .shared-bottom-cta .cta-btns{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:430px}
 }
 @media (max-width:600px){
   .shared-bottom-cta .inwrap{padding-inline:23px}
 }
-@media (max-width:360px){
+@media (max-width:340px){
   .shared-bottom-cta .cta-btns{grid-template-columns:1fr}
 }
 

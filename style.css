@@ -467,6 +467,19 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .pres-text p{margin-top:16px;color:var(--on-dark);font-size:var(--fs-base);line-height:1.78;max-width:var(--measure);word-break:keep-all}
 .pres-text .mini{margin-top:14px;font-size:var(--fs-xs);color:rgba(247,243,233,.42);line-height:1.6}
 
+/* 설명형 진료 — 병원소개 카드와 반복되지 않게 카드 없는 열린 4열 */
+.explain-steps{display:grid;grid-template-columns:repeat(4,1fr)}
+.explain-step{padding:0 clamp(20px,2.3vw,30px)}
+.explain-step:first-child{padding-left:0}
+.explain-step:last-child{padding-right:0}
+.explain-step+.explain-step{border-left:1px solid rgba(53,87,68,.16)}
+.explain-step .n{display:block;font-size:15px;font-weight:600;color:var(--sage);letter-spacing:.04em;margin-bottom:14px}
+.explain-step h3{
+  font-family:var(--display);font-weight:700;font-size:var(--fs-h4);
+  color:var(--green-deep);margin-bottom:12px;word-break:keep-all;
+}
+.explain-step p{color:var(--ink-soft);font-size:var(--fs-base);line-height:1.75;word-break:keep-all}
+
 /* 8-4. 의료진 — 사진 45% / 소개 55% 2단 */
 /* 슬림 배너 — 빈 딥그린 띠 대신 브레드크럼만 담은 낮은 스트립 */
 .page-hero.slim{min-height:0;padding:15px 0}
@@ -981,11 +994,11 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 @media (max-width:1024px){
   /* 벤토가 좁아지면 1열로 — 카드가 세로로 눌리지 않게 */
   .pagecards{grid-template-columns:1fr;grid-template-rows:auto}
-  /* 진료 범위 — 태블릿 2×2, 세로선은 열 사이에만·행 사이엔 가로 헤어라인 */
-  .field-grid{grid-template-columns:1fr 1fr;row-gap:30px}
-  .field-item:nth-child(odd){padding-left:0;border-left:none}
-  .field-item:nth-child(even){padding-right:0;border-left:1px solid rgba(53,87,68,.16)}
-  .field-item:nth-child(n+3){border-top:1px solid rgba(53,87,68,.16);padding-top:26px}
+  /* 진료 범위·설명형 진료 — 태블릿 2×2, 세로선은 열 사이에만·행 사이엔 가로 헤어라인 */
+  .field-grid,.explain-steps{grid-template-columns:1fr 1fr;row-gap:30px}
+  .field-item:nth-child(odd),.explain-step:nth-child(odd){padding-left:0;border-left:none}
+  .field-item:nth-child(even),.explain-step:nth-child(even){padding-right:0;border-left:1px solid rgba(53,87,68,.16)}
+  .field-item:nth-child(n+3),.explain-step:nth-child(n+3){border-top:1px solid rgba(53,87,68,.16);padding-top:26px}
   /* 태블릿 이하 — 글 위 / 사진 아래. 세로를 넉넉히 줘서 얼굴만 잘리지 않게 */
   .pagecard-lead{grid-row:auto;grid-template-columns:1fr;min-height:0;padding-bottom:0}
   .naver-bar{width:100%}
@@ -1031,10 +1044,10 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 @media (max-width:640px){
   .certs{grid-template-columns:1fr;max-width:330px}
   .symptoms ul{grid-template-columns:1fr;gap:12px}
-  /* 진료 범위 — 모바일 1열, 항목 사이 가로 헤어라인 */
-  .field-grid{grid-template-columns:1fr;row-gap:0}
-  .field-grid .field-item{padding:0;border-left:none;border-top:none}
-  .field-grid .field-item+.field-item{margin-top:24px;padding-top:24px;border-top:1px solid rgba(53,87,68,.16)}
+  /* 진료 범위·설명형 진료 — 모바일 1열, 항목 사이 가로 헤어라인 */
+  .field-grid,.explain-steps{grid-template-columns:1fr;row-gap:0}
+  .field-grid .field-item,.explain-steps .explain-step{padding:0;border-left:none;border-top:none}
+  .field-grid .field-item+.field-item,.explain-steps .explain-step+.explain-step{margin-top:24px;padding-top:24px;border-top:1px solid rgba(53,87,68,.16)}
 }
 
 @media (max-width:600px){

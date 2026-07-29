@@ -234,6 +234,11 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 .ph.has-img{border:none;background-size:cover;background-position:center;background-repeat:no-repeat}
 .ph.has-img.contain{background-size:contain;background-color:#fff}
 .ph.has-img span{display:none}
+/* 실사진 크롭 보정 — 인물 얼굴·손·기구가 잘리면 사진별로 하나만 추가해 기준점을 옮기세요 */
+.ph.has-img.pos-top{background-position:center 18%}
+.ph.has-img.pos-bottom{background-position:center 82%}
+.ph.has-img.pos-left{background-position:22% center}
+.ph.has-img.pos-right{background-position:78% center}
 /* 일러스트 이미지 — 원본 배경(웜크림)이 섹션 배경보다 밝아 사각형 자국이 남습니다.
    multiply로 흰 계열을 뒤 배경에 녹여서, 섹션 색을 바꿔도 자동으로 따라오게 합니다. */
 .ph.blend{mix-blend-mode:multiply;background-color:transparent}

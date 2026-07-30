@@ -262,8 +262,10 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 .btn-green:active{filter:brightness(.94)}
 .btn-line{background:transparent;color:var(--on-dark-soft);border:1px solid rgba(247,246,242,.45)}
 .btn-line:hover{background:rgba(247,243,233,.12)}
-/* URL이 아직 없는 링크 — app.js가 aria-disabled와 함께 부여 */
-a.link-off{cursor:default}
+/* URL이 아직 없는 링크 — app.js가 hidden과 함께 부여, 컴포넌트별 display를 이겨야 함 */
+.link-unavailable[hidden]{display:none}
+/* 예약 URL이 없어 예약 버튼이 숨겨지면 전화 버튼이 첫 행 전체를 사용 */
+.shared-bottom-cta .cta-btns [data-link="booking"][hidden]+.btn-line{grid-column:1 / -1}
 .btn-ink{background:var(--green-deep);color:var(--cream)}
 .btn-ink:hover{background:var(--forest)}
 .btn-ghost{background:transparent;color:var(--green-deep);border:1px solid var(--sage)}
@@ -309,13 +311,16 @@ body.menu-open .menu_but span:nth-child(2){opacity:0}
 body.menu-open .menu_but span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-dim{position:fixed;inset:0;background:rgba(5,33,21,.55);opacity:0;visibility:hidden;transition:.3s;z-index:999}
 body.menu-open .nav-dim{opacity:1;visibility:visible}
+/* 모바일 메뉴가 열리면 배경 스크롤 잠금 */
+body.menu-open{overflow:hidden}
 
 /* --------------------------------------------------------------------------
    7. 히어로 (index) / 페이지 배너 (하위 페이지)
    -------------------------------------------------------------------------- */
 .hero{
   position:relative;margin-top:var(--header-h);
-  height:100svh;min-height:540px;max-height:900px;
+  /* 고정 헤더를 제외한 첫 화면 높이에 정확히 맞춤 */
+  height:calc(100svh - var(--header-h));min-height:540px;max-height:900px;
   /* 촬영 영상의 크롭 기준점 — 얼굴·진료 장면이 잘리면 이 값만 조정
      (PC와 모바일을 따로 지정할 수 있습니다) */
   --hero-focus:center;
@@ -1061,7 +1066,8 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 .quick a.top{background:var(--cream);color:var(--green-deep);border:1px solid var(--sage-soft);box-shadow:none}
 .quick svg{width:24px;height:24px}
 
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--forest);border-top:1px solid rgba(247,246,242,.08);padding-bottom:env(safe-area-inset-bottom);grid-template-columns:repeat(4,1fr)}
+/* 열 개수를 고정하지 않고 실제 표시 항목 수만큼 균등 분할 — 예약이 숨겨지면 자동 3열 */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--forest);border-top:1px solid rgba(247,246,242,.08);padding-bottom:env(safe-area-inset-bottom);grid-auto-flow:column;grid-auto-columns:1fr}
 /* 항목 = 2행 그리드: 아이콘 행 28px 고정 + 라벨 행 — 네 항목의 기준선 통일 */
 .bottom-nav a{display:grid;grid-template-rows:28px auto;justify-items:center;align-items:center;row-gap:6px;padding:8px 4px;font-size:.68rem;line-height:1;color:var(--on-dark);font-weight:500}
 .bottom-nav svg{width:24px;height:24px;display:block;flex-shrink:0}
@@ -1121,6 +1127,10 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   .visit-info-panel{order:1}
 }
 
+@media (max-width:920px){
+  /* 좁은 태블릿 — 고정 최소폭(280/340px)이 화면을 넘치지 않게 완화 */
+  .spec-grid{grid-template-columns:minmax(0,.9fr) auto minmax(0,1.1fr);gap:16px}
+}
 @media (max-width:760px){
   /* 세로 하나의 연속 과정: 기본 과정 → 연결 캡슐(아래 화살표) → 전문 수련 */
   .spec-grid{grid-template-columns:1fr;max-width:400px;gap:0}

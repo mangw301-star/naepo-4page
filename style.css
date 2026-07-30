@@ -560,21 +560,26 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 
 /* 8-5. 전문의 수련과정 비교 — 이 사이트의 시그니처 도표 */
 .spec{margin-top:clamp(52px,7vw,92px)}
-/* 기본 과정(좁게) → 연결 영역 → 추가 전문 수련(넓게) — 경쟁이 아닌 연속 과정 */
+/* 기본 과정(좁게) → 연결 캡슐 → 추가 전문 수련(넓게) — 경쟁이 아닌 연속 과정 */
 .spec-grid{
   display:grid;
-  grid-template-columns:minmax(0,.8fr) minmax(80px,auto) minmax(0,1.2fr);
-  gap:24px;align-items:start;max-width:920px;margin:0 auto;
+  grid-template-columns:minmax(280px,.9fr) minmax(120px,150px) minmax(340px,1.1fr);
+  gap:24px;align-items:start;max-width:940px;margin:0 auto;
 }
-/* 두 과정을 잇는 연결 표현 — 세로 중앙, 얇고 차분하게 */
+/* 두 과정을 잇는 연결 캡슐 — 왼쪽 면허 취득과 오른쪽 첫 단계 사이 높이에 정렬 */
 .spec-connector{
-  align-self:center;justify-self:center;
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  text-align:center;
+  align-self:center;justify-self:center;box-sizing:border-box;
+  /* 왼쪽 '면허 취득' 박스와 오른쪽 첫 단계 사이의 수직 중심에 오도록 소폭 하향 */
+  margin-top:70px;
+  min-width:120px;text-align:center;
+  display:flex;flex-direction:column;gap:4px;
+  background:rgba(119,145,124,.13);
+  border:1px solid rgba(53,87,68,.20);
+  border-radius:12px;padding:12px 14px;
 }
-.spec-connector__label{font-size:14px;font-weight:600;color:var(--sage);word-break:keep-all;line-height:1.5}
-.spec-connector__label--m{display:none}
-.spec-connector__arrow{font-size:20px;color:var(--sage);line-height:1}
+.spec-connector__eyebrow{font-size:13.5px;line-height:1.3;font-weight:600;color:var(--green)}
+.spec-connector__main{font-size:15.5px;line-height:1.3;font-weight:700;color:var(--green-deep);white-space:nowrap}
+.spec-connector__m{display:none}
 .spec-col{display:flex;flex-direction:column;align-items:stretch}
 .spec-tag{text-align:center;font-family:var(--display);font-weight:700;font-size:var(--fs-base);padding:11px 8px;border-radius:30px;margin-bottom:18px}
 .spec-tag.muted{background:color-mix(in srgb, var(--sage) 22%, transparent);color:var(--ink-soft)}
@@ -1117,12 +1122,11 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 }
 
 @media (max-width:760px){
-  /* 세로 하나의 연속 과정: 기본 과정 → 연결 문구(아래 화살표) → 전문 수련 */
-  .spec-grid{grid-template-columns:1fr;max-width:400px;gap:18px}
-  .spec-connector{padding:6px 0}
-  .spec-connector__label--pc{display:none}
-  .spec-connector__label--m{display:block}
-  .spec-connector__arrow{transform:rotate(90deg)}
+  /* 세로 하나의 연속 과정: 기본 과정 → 연결 캡슐(아래 화살표) → 전문 수련 */
+  .spec-grid{grid-template-columns:1fr;max-width:400px;gap:0}
+  .spec-connector{width:100%;max-width:280px;min-width:0;margin:20px auto}
+  .spec-connector__pc{display:none}
+  .spec-connector__m{display:inline}
 }
 
 @media (max-width:640px){

@@ -37,24 +37,25 @@ var LINKS = {
     if (!url && nodes.length) unset.push(key);
     nodes.forEach(function (el) {
       if (url) {
-        // URL이 채워지면 정상 링크로 활성화
+        // URL이 채워지면 정상 링크로 자동 복원
         el.setAttribute('href', url);
         el.setAttribute('target', '_blank');
         el.setAttribute('rel', 'noopener');
+        el.removeAttribute('hidden');
         el.removeAttribute('aria-disabled');
         el.removeAttribute('tabindex');
-        el.classList.remove('link-off');
+        el.classList.remove('link-unavailable');
       } else {
-        // URL이 비어 있는 동안엔 접근성 트리와 탭 순서에서 제외하고 클릭을 막습니다.
+        // URL이 없는 버튼은 공개 화면과 탭 순서에서 완전히 숨깁니다.
+        el.setAttribute('hidden', '');
         el.setAttribute('aria-disabled', 'true');
         el.setAttribute('tabindex', '-1');
-        el.classList.add('link-off');
-        el.addEventListener('click', function (e) { e.preventDefault(); });
+        el.classList.add('link-unavailable');
       }
     });
   });
   if (unset.length && window.console) {
-    console.warn('[내포더봄치과] app.js 상단 LINKS에 아직 주소가 없는 버튼(현재는 숨기지 않고 표시만 함): ' + unset.join(', '));
+    console.warn('[내포더봄치과] app.js 상단 LINKS에 주소가 없어 숨겨진 버튼: ' + unset.join(', ') + ' (URL을 넣으면 자동 표시)');
   }
 
   /* ------------------------------------------------------------------------

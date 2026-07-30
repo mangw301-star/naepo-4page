@@ -316,9 +316,15 @@ body.menu-open .nav-dim{opacity:1;visibility:visible}
 .hero{
   position:relative;margin-top:var(--header-h);
   height:100svh;min-height:540px;max-height:900px;
+  /* 촬영 영상의 크롭 기준점 — 얼굴·진료 장면이 잘리면 이 값만 조정
+     (PC와 모바일을 따로 지정할 수 있습니다) */
+  --hero-focus:center;
+  --hero-focus-m:center 30%;
 }
 .hero-video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;
+  object-position:var(--hero-focus);
+  /* 영상·포스터가 모두 없을 때도 빈 흰 화면 대신 딥그린 면 유지 */
   background:linear-gradient(150deg,var(--green-deep),var(--forest));
 }
 /* .62로 낮춰 영상이 보이게 하고, 대비는 text-shadow로 확보 */
@@ -1130,7 +1136,9 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
      flex-basis 0 — 글자 수가 달라도 두 버튼 폭을 똑같이 나눕니다 */
   .cta-btns .btn{min-width:150px;flex:1 1 0;max-width:100%}
   .hero{max-height:none}
+  /* 모바일 — PC보다 전체를 조금 더 어둡게 해 제목·버튼 대비 확보 */
   .hero-overlay{background:linear-gradient(180deg,rgba(5,33,21,.42),rgba(5,33,21,.76))}
+  .hero-video{object-position:var(--hero-focus-m)}
   .pagecards{gap:14px}
   .pagecard{padding:26px 24px}
   .pagecard h3{font-size:23px}

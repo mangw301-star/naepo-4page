@@ -58,6 +58,32 @@ var LINKS = {
   }
 
   /* ------------------------------------------------------------------------
+     1-1. 히어로 영상 (index)
+     - 움직임 최소화(prefers-reduced-motion) 사용자는 재생을 멈추고 poster만 표시
+     - 영상 파일이 아직 없거나 로드에 실패해도 poster/딥그린 면이 그대로 유지
+     ------------------------------------------------------------------------ */
+  var heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    var motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var applyMotionPref = function () {
+      if (motionMq.matches) {
+        heroVideo.removeAttribute('autoplay');
+        heroVideo.pause();
+      }
+    };
+    applyMotionPref();
+    if (motionMq.addEventListener) motionMq.addEventListener('change', applyMotionPref);
+
+    var lastSource = heroVideo.querySelector('source:last-of-type');
+    if (lastSource) {
+      // 모든 source가 실패하면 마지막 source에서 error가 발생 — poster 상태로 유지
+      lastSource.addEventListener('error', function () {
+        heroVideo.removeAttribute('autoplay');
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
      2. 모바일 메뉴
      ------------------------------------------------------------------------ */
   var menuBtn = document.getElementById('menuBtn');

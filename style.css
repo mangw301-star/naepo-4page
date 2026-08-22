@@ -319,8 +319,8 @@ body.menu-open{overflow:hidden}
    -------------------------------------------------------------------------- */
 .hero{
   position:relative;margin-top:var(--header-h);
-  /* 고정 헤더를 제외한 첫 화면 높이에 정확히 맞춤 */
-  height:calc(100svh - var(--header-h));min-height:540px;max-height:900px;
+  /* 첫 화면의 약 3/4를 영상이 차지하도록 — 아래 섹션이 살짝 보여 스크롤을 유도합니다 */
+  height:75svh;min-height:500px;max-height:860px;
   /* 촬영 영상의 크롭 기준점 — 얼굴·진료 장면이 잘리면 이 값만 조정
      (PC와 모바일을 따로 지정할 수 있습니다) */
   --hero-focus:center;

@@ -1055,6 +1055,8 @@ footer .f-col p a{display:inline-flex;align-items:center;min-height:44px;padding
 footer .f-col a:hover{color:var(--on-dark-soft)}
 footer .f-top{margin-bottom:38px}   /* SNS 버튼 제거 후 소개문구-법적문구 간격 보정 */
 footer .legal{border-top:1px solid var(--on-dark-line);padding-top:22px;font-size:var(--fs-xs);color:var(--on-dark-soft);opacity:.62;line-height:1.8}
+/* 데스크톱에서는 병원 정보와 같은 줄, 모바일에서는 아래 줄로 내려갑니다 */
+footer .legal .lg-biz::before{content:" · "}
 footer .legal a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;margin:0 -4px;text-decoration:underline;text-underline-offset:3px}
 footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 
@@ -1157,6 +1159,8 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
   footer .legal{display:grid;gap:8px;line-height:1.55}
   footer .legal br,footer .legal .lg-mid,footer .legal .lg-full{display:none}
   footer .legal .lg-line{font-size:14px}
+  footer .legal .lg-biz{font-size:13px;opacity:.85}
+  footer .legal .lg-biz::before{content:none}
   footer .legal a{font-size:14px;font-weight:600;justify-self:start}
   footer .legal .lg-copy{font-size:12px;opacity:.8}
   .certs{grid-template-columns:1fr;max-width:330px}

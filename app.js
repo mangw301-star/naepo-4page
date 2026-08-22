@@ -82,6 +82,20 @@ var LINKS = {
   }
 
   /* ------------------------------------------------------------------------
+     1-2. 메인 첫 화면 — 영상 위에서는 헤더를 투명하게 (index 전용)
+     ------------------------------------------------------------------------ */
+  var heroSection = document.querySelector('.hero');
+  if (heroSection) {
+    var syncHeroTop = function () {
+      var limit = heroSection.offsetHeight - (parseInt(getComputedStyle(html).getPropertyValue('--header-h'), 10) || 74);
+      body.classList.toggle('hero-top', window.scrollY < limit);
+    };
+    syncHeroTop();
+    window.addEventListener('scroll', syncHeroTop, { passive: true });
+    window.addEventListener('resize', syncHeroTop);
+  }
+
+  /* ------------------------------------------------------------------------
      2. 모바일 메뉴
      ------------------------------------------------------------------------ */
   var menuBtn = document.getElementById('menuBtn');

@@ -384,6 +384,14 @@ body.menu-open{overflow:hidden}
   max-width:26em;text-shadow:0 1px 12px rgba(5,33,21,.6);word-break:keep-all;
 }
 .hero-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+/* 영상 위에서는 테두리만으로 버튼이 잘 안 보여, 어두운 면을 깔아 형태를 잡아줍니다.
+   영상 장면이 밝아져도 글자가 묻히지 않습니다. */
+.hero-cta .btn-line{
+  background:rgba(4,28,20,.34);
+  border-color:rgba(247,246,242,.75);
+  backdrop-filter:blur(2px);
+}
+.hero-cta .btn-line:hover{background:rgba(4,28,20,.52);border-color:#fff}
 
 /* 하위 페이지 배너 — 영상 없음, 38vh */
 .page-hero{

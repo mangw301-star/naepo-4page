@@ -150,11 +150,11 @@
     </div>
 
     <div class="contact-overview reveal">
-      <!-- 지도 API 키가 없거나 로드에 실패하면 아래 스크립트가 .contact-overview에
-           no-map 클래스를 붙여 이 상자를 통째로 감춥니다(빈 칸을 남기지 않기 위함).
-           위치 안내는 오른쪽 패널의 '네이버 지도에서 보기' 버튼이 담당합니다. -->
+      <!-- 지도 이미지 자리. 꾸민 지도 스크린샷을 dir-map.jpg 로 저장한 뒤
+           아래 div에 has-img 클래스와 style="background-image:url('dir-map.jpg')" 를 넣으면 됩니다.
+           글씨가 잘리지 않도록 이미지 전체가 보이게(contain) 표시됩니다. -->
       <div class="contact-map">
-        <div id="naver-map" class="visit-naver-map" role="region" aria-label="내포더봄치과 위치 지도"></div>
+        <div class="ph map-slot dark" role="img" aria-label="내포더봄치과 위치 지도"><span>네이버 지도 이미지</span></div>
       </div>
       <aside class="visit-info-panel">
         <div class="vip-block">
@@ -189,8 +189,6 @@
       <!-- 도착 순서대로 배치. 2·3번은 아직 사진이 없어 슬롯만 유지합니다 -->
       <figure class="dir-photo"><div class="ph r-4x3 has-img" role="img" aria-label="건물 뒷편 지하주차장 입구 안내" style="background-image:url('dir-parking.jpg')"><span>지하주차장 입구</span></div><figcaption><b>1</b> 건물 뒷편 — 노란 화살표가 지하주차장 입구입니다</figcaption></figure>
       <figure class="dir-photo"><div class="ph r-4x3 has-img" role="img" aria-label="1층에 다이소가 있는 광명헤세드 건물 전경" style="background-image:url('dir-building.jpg')"><span>건물 전경</span></div><figcaption><b>2</b> 1층에 다이소가 있는 건물입니다</figcaption></figure>
-      <figure class="dir-photo"><div class="ph r-4x3 dark"><span>1층 출입구 사진</span></div><figcaption><b>3</b> 다이소 옆 출입구에서 엘리베이터를 타세요</figcaption></figure>
-      <figure class="dir-photo"><div class="ph r-4x3 has-img" role="img" aria-label="6층 접수 데스크" style="background-image:url('dir-reception.jpg')"><span>접수 데스크</span></div><figcaption><b>4</b> 6층에 도착하면 바로 보이는 접수 데스크입니다</figcaption></figure>
     </div>
 
     <div class="dir-steps reveal">
@@ -280,77 +278,5 @@
 
 <script src="app.js"></script>
 
-<!-- 네이버 지도 Web Dynamic Map API v3
-     TODO: 네이버클라우드플랫폼(NCP) > AI·NAVER API > Maps > Web Dynamic Map에서
-     발급받은 ncpKeyId로 아래 YOUR_NCP_KEY_ID를 교체하세요.
-     인증 "Web 서비스 URL"에는 경로 없이 origin만 등록해야 합니다:
-       https://mangw301-star.github.io
-     (/naepo-4page/visit.html 처럼 경로를 포함해 등록하면 인증에 실패합니다)
-     Client Secret은 절대 프론트엔드 코드에 넣지 마세요. -->
-<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=YOUR_NCP_KEY_ID"></script>
-<script>
-(function(){
-  "use strict";
-  /* 내포더봄치과 좌표 (WGS84) — 청사로150번길 20 광명헤세드 (지번: 신경리 588)
-     네이버 플레이스(2039834402) 등록 핀에서 가져온 공식 좌표입니다.
-     페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
-  var CLINIC_LAT = 36.6570412;
-  var CLINIC_LNG = 126.6807780;
-  var PLACE_URL = "https://map.naver.com/p/entry/place/2039834402";
-
-  var mapEl = document.getElementById("naver-map");
-  if(!mapEl) return;
-
-  /* 지도를 못 띄우면 빈 상자를 남기지 않고 지도 칸 자체를 감춥니다 */
-  function showFallback(){
-    var wrap = mapEl.closest ? mapEl.closest(".contact-overview") : null;
-    if(wrap) wrap.classList.add("no-map");
-  }
-  /* API 키 인증 실패 시 네이버가 호출하는 전역 훅 */
-  window.navermap_authFailure = showFallback;
-
-  if(!window.naver || !naver.maps || CLINIC_LAT === null || CLINIC_LNG === null){
-    showFallback();
-    return;
-  }
-
-  try{
-    var CLINIC_POSITION = new naver.maps.LatLng(CLINIC_LAT, CLINIC_LNG);
-    var map = new naver.maps.Map("naver-map", {
-      center: CLINIC_POSITION,
-      zoom: 17,
-      draggable: true,          /* 마우스·터치 드래그 이동 */
-      pinchZoom: true,          /* 두 손가락 확대·축소 */
-      keyboardShortcuts: true,  /* 방향키 이동 */
-      scrollWheel: false,       /* 페이지 스크롤 중 실수 확대 방지 */
-      zoomControl: true,
-      zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER }
-    });
-    var marker = new naver.maps.Marker({ position: CLINIC_POSITION, map: map, title: "내포더봄치과" });
-
-    var linkHtml = PLACE_URL
-      ? '<a class="nv-place" href="' + PLACE_URL + '" target="_blank" rel="noopener">네이버 지도에서 보기</a>'
-      : "";
-    var info = new naver.maps.InfoWindow({
-      content:
-        '<div class="nv-info">' +
-        '<strong>내포더봄치과</strong>' +
-        '<span>광명헤세드 6층</span>' +
-        '<a href="tel:041-406-8875">전화 041-406-8875</a>' +
-        linkHtml +
-        "</div>",
-      borderWidth: 0,
-      backgroundColor: "transparent",
-      disableAnchor: true
-    });
-    naver.maps.Event.addListener(marker, "click", function(){
-      if(info.getMap()) info.close();
-      else info.open(map, marker);
-    });
-  }catch(e){
-    showFallback();
-  }
-})();
-</script>
 </body>
 </html>

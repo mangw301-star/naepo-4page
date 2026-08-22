@@ -150,16 +150,11 @@
     </div>
 
     <div class="contact-overview reveal">
+      <!-- 지도 API 키가 없거나 로드에 실패하면 아래 스크립트가 .contact-overview에
+           no-map 클래스를 붙여 이 상자를 통째로 감춥니다(빈 칸을 남기지 않기 위함).
+           위치 안내는 오른쪽 패널의 '네이버 지도에서 보기' 버튼이 담당합니다. -->
       <div class="contact-map">
         <div id="naver-map" class="visit-naver-map" role="region" aria-label="내포더봄치과 위치 지도"></div>
-        <!-- 지도 API 키가 없거나(개원 전) 지도 로드에 실패했을 때 표시되는 대체 안내.
-             네이버 지도 링크는 API 키 없이도 동작합니다. -->
-        <div class="map-fallback" id="mapFallback" hidden>
-          <p>네이버 지도에서 위치를 확인하실 수 있습니다.</p>
-          <div class="map-fallback-links">
-            <a href="#" data-link="place">네이버 지도에서 열기</a>
-          </div>
-        </div>
       </div>
       <aside class="visit-info-panel">
         <div class="vip-block">
@@ -304,12 +299,12 @@
   var PLACE_URL = "https://map.naver.com/p/entry/place/2039834402";
 
   var mapEl = document.getElementById("naver-map");
-  var fallback = document.getElementById("mapFallback");
   if(!mapEl) return;
 
+  /* 지도를 못 띄우면 빈 상자를 남기지 않고 지도 칸 자체를 감춥니다 */
   function showFallback(){
-    if(fallback) fallback.hidden = false;
-    mapEl.style.display = "none";
+    var wrap = mapEl.closest ? mapEl.closest(".contact-overview") : null;
+    if(wrap) wrap.classList.add("no-map");
   }
   /* API 키 인증 실패 시 네이버가 호출하는 전역 훅 */
   window.navermap_authFailure = showFallback;

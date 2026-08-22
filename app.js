@@ -17,7 +17,7 @@ var LINKS = {
   booking : 'https://map.naver.com/p/entry/place/2039834402',
   place   : 'https://map.naver.com/p/entry/place/2039834402',   // 네이버 플레이스
   blog    : 'https://blog.naver.com/den_read',   // 네이버 블로그  예) https://blog.naver.com/아이디
-  kakao   : ''    // 카카오톡 채널  예) https://pf.kakao.com/_xxxxxx
+  kakao   : 'https://pf.kakao.com/_WrxniX'    // 카카오톡 채널
 };
 
 (function () {

@@ -34,6 +34,10 @@
   "image": "https://mangw301-star.github.io/naepo-4page/logo.png",
   "logo": "https://mangw301-star.github.io/naepo-4page/logo.png",
   "priceRange": "₩₩",
+  "sameAs": [
+    "https://map.naver.com/p/entry/place/2039834402",
+    "https://blog.naver.com/den_read"
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "홍북읍 청사로150번길 20 광명헤세드 6층",
@@ -293,15 +297,11 @@
 (function(){
   "use strict";
   /* 내포더봄치과 좌표 (WGS84) — 청사로150번길 20 광명헤세드 (지번: 신경리 588)
-     출처: 외부 주소-좌표 변환 사이트. 네이버 공식 Geocoding으로 재확인하지는
-     못했지만, OpenStreetMap 오픈데이터의 '청사로150번길' 위치와 약 60m 이내로
-     일치해 같은 도로·같은 블록임을 확인했습니다.
+     네이버 플레이스(2039834402) 등록 핀에서 가져온 공식 좌표입니다.
      페이지를 열 때마다 Geocoding API를 호출하지 않습니다. */
-  var CLINIC_LAT = 36.657027;
-  var CLINIC_LNG = 126.680753;
-  /* TODO: 스마트플레이스 등록 후 공식 핀 위치와 좌표 최종 대조 */
-  /* TODO: 네이버 플레이스/지도 URL이 확정되면 입력 — 입력 전에는 정보창에 링크가 숨겨집니다 */
-  var PLACE_URL = "";
+  var CLINIC_LAT = 36.6570412;
+  var CLINIC_LNG = 126.6807780;
+  var PLACE_URL = "https://map.naver.com/p/entry/place/2039834402";
 
   var mapEl = document.getElementById("naver-map");
   var fallback = document.getElementById("mapFallback");

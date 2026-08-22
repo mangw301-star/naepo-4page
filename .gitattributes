@@ -1,0 +1,19 @@
+# 줄바꿈 자동 변환이 이미지·영상 파일을 건드리지 않도록 이진 파일로 못 박습니다.
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webp binary
+*.gif  binary
+*.ico  binary
+*.mp4  binary
+*.webm binary
+*.mov  binary
+*.pdf  binary
+*.woff  binary
+*.woff2 binary
+
+# 텍스트 파일은 저장소에 LF로 저장
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf

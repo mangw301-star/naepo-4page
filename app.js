@@ -11,7 +11,10 @@
    비워두면 해당 버튼은 화면에서 자동으로 숨겨집니다.
    -------------------------------------------------------------------------- */
 var LINKS = {
-  booking : '',   // 네이버 예약   예) https://booking.naver.com/booking/13/bizes/000000
+  // 네이버 예약 페이지가 열리면 아래를 그 주소로 교체하세요.
+  //   예) https://booking.naver.com/booking/13/bizes/000000
+  // 그전까지는 전화·예약이 가능한 네이버 플레이스로 연결해 예약 버튼을 살려둡니다.
+  booking : 'https://map.naver.com/p/entry/place/2039834402',
   place   : 'https://map.naver.com/p/entry/place/2039834402',   // 네이버 플레이스
   blog    : 'https://blog.naver.com/den_read',   // 네이버 블로그  예) https://blog.naver.com/아이디
   kakao   : ''    // 카카오톡 채널  예) https://pf.kakao.com/_xxxxxx

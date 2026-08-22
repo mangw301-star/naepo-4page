@@ -87,11 +87,8 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
-  <!-- 촬영 영상 적용 방법: assets/ 폴더에 아래 세 파일을 넣기만 하면 됩니다.
-         hero-video.webm (주 재생용) / hero-video.mp4 (호환용) / hero-poster.webp (로드 전·실패 시 정지 화면)
-       크롭 기준이 어긋나면 style.css의 --hero-focus(PC), --hero-focus-m(모바일)만 조정하세요. -->
-  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.webp" aria-hidden="true">
-    <source src="assets/hero-video.webm" type="video/webm">
+  <!-- 크롭 기준이 어긋나면 style.css의 --hero-focus(PC), --hero-focus-m(모바일)만 조정하세요. -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
     <source src="assets/hero-video.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>

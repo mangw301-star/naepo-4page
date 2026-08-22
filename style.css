@@ -277,7 +277,23 @@ section{scroll-margin-top:calc(var(--header-h) + 12px)}
 header{
   position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--header-h);
   background:var(--cream);border-bottom:1px solid color-mix(in srgb, var(--sage) 30%, transparent);
+  transition:background .3s, border-color .3s;
 }
+/* 메인 첫 화면 — 헤더를 영상 위에 투명하게 얹고 글자를 밝게.
+   스크롤해서 영상을 벗어나면 body.scrolled가 붙어 원래 웜베이지 헤더로 돌아옵니다. */
+body.hero-top header{
+  background:transparent;border-bottom-color:transparent;
+}
+body.hero-top header .brand strong{color:#fff;text-shadow:0 1px 12px rgba(4,28,20,.45)}
+body.hero-top header nav.gnb a{color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(4,28,20,.45)}
+body.hero-top header nav.gnb a:hover,
+body.hero-top header nav.gnb a.active,
+body.hero-top header nav.gnb a.current{color:#fff}
+body.hero-top header .menu_but span{background:#fff}
+/* 모바일 메뉴가 열리면 시트가 밝은 면이므로 투명 헤더를 해제 */
+body.hero-top.menu-open header{background:var(--cream)}
+body.hero-top.menu-open header .brand strong{color:var(--green-deep);text-shadow:none}
+body.hero-top.menu-open header .menu_but span{background:var(--forest)}
 header .inwrap{height:100%;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:12px;min-height:44px}
 /* logo.png 원본 파일에 아이콘 주변 여백이 많아, 확대해 여백을 잘라냅니다 */
@@ -318,9 +334,9 @@ body.menu-open{overflow:hidden}
    7. 히어로 (index) / 페이지 배너 (하위 페이지)
    -------------------------------------------------------------------------- */
 .hero{
-  position:relative;margin-top:var(--header-h);
-  /* 첫 화면의 약 3/4를 영상이 차지하도록 — 아래 섹션이 살짝 보여 스크롤을 유도합니다 */
-  height:75svh;min-height:500px;max-height:860px;
+  /* 영상이 첫 화면을 꽉 채웁니다. 헤더는 위에 투명하게 얹히므로 상단 여백 없음 */
+  position:relative;margin-top:0;
+  height:100svh;min-height:560px;
   /* 촬영 영상의 크롭 기준점 — 얼굴·진료 장면이 잘리면 이 값만 조정
      (PC와 모바일을 따로 지정할 수 있습니다) */
   --hero-focus:center;
@@ -345,7 +361,8 @@ body.menu-open{overflow:hidden}
   opacity:var(--grain-on-dark);
   mix-blend-mode:screen;
 }
-.hero-copy{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center}
+/* 헤더가 위에 겹치므로 그 높이만큼 밀어 실제 보이는 영역의 가운데에 오게 합니다 */
+.hero-copy{position:relative;z-index:3;height:100%;padding-top:var(--header-h);display:flex;flex-direction:column;justify-content:center}
 .hero-copy .rule{width:48px;height:2px;background:var(--gold);margin-bottom:24px}
 .hero-copy h1{
   font-family:var(--display);font-weight:800;

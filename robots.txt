@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://REPLACE-WITH-DOMAIN/sitemap.xml
+Sitemap: https://mangw301-star.github.io/naepo-4page/sitemap.xml

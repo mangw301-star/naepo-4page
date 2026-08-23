@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mangw301-star.github.io/naepo-4page/sitemap.xml
+Sitemap: https://naepothebom.co.kr/sitemap.xml

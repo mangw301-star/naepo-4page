@@ -46,14 +46,15 @@ var LINKS = {
 지금 상태로는 모바일 하단바에 전화·오시는 길 2개만 보입니다. 개발자도구 콘솔에
 어떤 링크가 비어 있는지 경고가 찍힙니다.
 
-### 2. 도메인 — 전체 파일 일괄 치환
+### 2. 도메인 — naepothebom.co.kr (GitHub Pages 커스텀 도메인)
 
-`REPLACE-WITH-DOMAIN` 을 실제 도메인으로 찾아 바꾸기 하세요. (canonical, og:url, JSON-LD)
+루트의 `CNAME` 파일(내용: `naepothebom.co.kr` 한 줄)이 도메인을 결정합니다.
+**삭제하거나 덮어쓰지 마세요** — 없어지면 사이트가 github.io 주소로 되돌아갑니다.
 
-```bash
-# macOS
-grep -rl REPLACE-WITH-DOMAIN . | xargs sed -i '' 's/REPLACE-WITH-DOMAIN/naepodebom.co.kr/g'
-```
+주소가 바뀌는 날이 오면 아래 파일의 `https://naepothebom.co.kr/` 를 일괄 치환하세요:
+canonical · og:url · og:image · JSON-LD (index/doctor/treatment/visit/privacy.html), sitemap.xml, robots.txt.
+DNS(가비아: A 레코드 4개 → 185.199.108~111.153, www CNAME → mangw301-star.github.io)가
+먼저 새 주소를 가리킨 뒤에 CNAME 파일을 바꿔야 접속이 끊기지 않습니다.
 
 ### 3. 나머지 치환 토큰
 

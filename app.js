@@ -342,3 +342,62 @@ var LINKS = {
   if (yr) yr.textContent = new Date().getFullYear();
 
 })();
+
+/* ── 홈 공지 팝업 (추석 연휴 진료 안내) ──────────────────────────
+   POP_UNTIL(포함)까지만 표시하고, 날짜가 지나면 아무것도 하지 않습니다.
+   '오늘 하루 보지 않기'는 이 브라우저에 오늘 날짜를 저장하는 방식입니다.
+   다음 공지에 재사용: index.html의 팝업 문구와 아래 날짜만 바꾸면 됩니다. */
+(function () {
+  var pop = document.getElementById('holidayPop');
+  var dim = document.getElementById('holidayDim');
+  if (!pop || !dim) return;
+
+  var POP_UNTIL = '2026-09-26';        /* 추석 연휴 진료일 — 이날까지 표시 */
+  var KEY = 'popHide-' + POP_UNTIL;
+
+  function two(n) { return n < 10 ? '0' + n : '' + n; }
+  var now = new Date();
+  var today = now.getFullYear() + '-' + two(now.getMonth() + 1) + '-' + two(now.getDate());
+
+  if (today > POP_UNTIL) return;                       /* 기간 종료 */
+  try { if (localStorage.getItem(KEY) === today) return; } catch (e) {}
+
+  var closeBtn = document.getElementById('holidayPopClose');
+  var todayBtn = document.getElementById('holidayPopToday');
+  var lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    dim.hidden = false;
+    pop.hidden = false;
+    document.body.classList.add('pop-open');
+    closeBtn.focus();
+    document.addEventListener('keydown', onKey);
+  }
+  function close() {
+    dim.hidden = true;
+    pop.hidden = true;
+    document.body.classList.remove('pop-open');
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function onKey(e) {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+    /* 팝업 밖으로 초점이 나가지 않게 순환시킵니다 */
+    var focusables = pop.querySelectorAll('a[href], button');
+    var first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  closeBtn.addEventListener('click', close);
+  dim.addEventListener('click', close);
+  todayBtn.addEventListener('click', function () {
+    try { localStorage.setItem(KEY, today); } catch (e) {}
+    close();
+  });
+
+  /* 첫 화면이 그려진 직후에 띄웁니다 */
+  setTimeout(open, 400);
+})();

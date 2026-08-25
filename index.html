@@ -288,6 +288,24 @@
   <a href="#" data-link="booking" class="hl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>예약</span></a>
 </nav>
 
+<!-- 추석 연휴 진료 안내 팝업 —
+     app.js 맨 아래 로직이 2026-09-26이 지나면 자동으로 띄우지 않으므로,
+     연휴가 끝난 뒤 이 블록을 지우지 않아도 됩니다.
+     다음 공지에 재사용하려면 여기 문구와 app.js의 POP_UNTIL 날짜만 바꾸세요. -->
+<div class="pop-dim" id="holidayDim" hidden></div>
+<section class="pop" id="holidayPop" role="dialog" aria-modal="true" aria-labelledby="holidayPopTitle" hidden>
+  <p class="pop-label">추석 연휴 진료 안내</p>
+  <h2 id="holidayPopTitle">연휴 중에도<br><em>9월 26일 토요일</em>, 진료합니다</h2>
+  <p class="pop-time">09:30 – 14:00</p>
+  <p class="pop-desc">갑자기 아픈 치아, 빠진 보철 — 연휴라고 미루지 마세요.<br>
+  24일(목) · 25일(금·추석) · 27일(일)은 휴진입니다.</p>
+  <div class="pop-actions">
+    <a class="btn btn-gold" href="tel:041-406-8875">전화 예약 041-406-8875</a>
+    <button type="button" class="pop-close" id="holidayPopClose">닫기</button>
+  </div>
+  <button type="button" class="pop-today" id="holidayPopToday">오늘 하루 보지 않기</button>
+</section>
+
 <script src="app.js"></script>
 </body>
 </html>

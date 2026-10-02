@@ -1291,7 +1291,7 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 }
 
 /* --------------------------------------------------------------------------
-   14. 홈 공지 팝업 (추석 연휴 진료 안내)
+   14. 홈 공지 팝업 (휴일 진료 안내)
    마크업은 index.html에만 있습니다. 표시 기간이 지나면 app.js가 아예 열지
    않으므로, 연휴 뒤에 이 스타일을 지우지 않아도 됩니다.
    -------------------------------------------------------------------------- */
@@ -1323,6 +1323,10 @@ footer .legal a:hover{color:var(--on-dark-soft);opacity:1}
 .pop-time{
   font-weight:800;font-size:var(--fs-h3);color:var(--green-deep);
   letter-spacing:.01em;font-variant-numeric:tabular-nums;margin:0 0 14px;
+}
+.pop-time small{
+  display:block;margin-top:4px;font-size:var(--fs-sm);font-weight:600;
+  color:var(--ink-soft);letter-spacing:0;
 }
 .pop-desc{font-size:var(--fs-sm);color:var(--ink-soft);line-height:1.7;word-break:keep-all;margin:0 0 22px}
 .pop-actions{display:grid;grid-template-columns:1fr auto;gap:10px}

@@ -340,7 +340,7 @@ var LINKS = {
 
 })();
 
-/* ── 홈 공지 팝업 (추석 연휴 진료 안내) ──────────────────────────
+/* ── 홈 공지 팝업 (휴일 진료 안내 — 지금: 개천절 대체공휴일) ──────────
    POP_UNTIL(포함)까지만 표시하고, 날짜가 지나면 아무것도 하지 않습니다.
    '오늘 하루 보지 않기'는 이 브라우저에 오늘 날짜를 저장하는 방식입니다.
    다음 공지에 재사용: index.html의 팝업 문구와 아래 날짜만 바꾸면 됩니다. */
@@ -349,7 +349,7 @@ var LINKS = {
   var dim = document.getElementById('holidayDim');
   if (!pop || !dim) return;
 
-  var POP_UNTIL = '2026-09-26';        /* 추석 연휴 진료일 — 이날까지 표시 */
+  var POP_UNTIL = '2026-10-05';        /* 개천절 대체공휴일 진료일 — 이날까지 표시 */
   var KEY = 'popHide-' + POP_UNTIL;
 
   function two(n) { return n < 10 ? '0' + n : '' + n; }

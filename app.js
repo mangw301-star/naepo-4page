@@ -13,7 +13,7 @@
 var LINKS = {
   booking : 'https://booking.naver.com/booking/16/bizes/1721113',   // 네이버 예약
   place   : 'https://map.naver.com/p/entry/place/2039834402',   // 네이버 플레이스
-  blog    : 'https://blog.naver.com/den_read',   // 네이버 블로그  예) https://blog.naver.com/아이디
+  blog    : 'https://blog.naver.com/den_write',   // 네이버 블로그  예) https://blog.naver.com/아이디
   kakao   : 'https://pf.kakao.com/_WrxniX'    // 카카오톡 채널
 };
 

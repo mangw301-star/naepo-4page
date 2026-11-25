@@ -46,9 +46,9 @@
     "addressCountry": "KR"
   },
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Wednesday","Friday"], "opens": "10:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Friday"], "opens": "10:00", "closes": "19:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Thursday"], "opens": "10:00", "closes": "20:30" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "14:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Saturday"], "opens": "09:30", "closes": "14:00" }
   ]
 }
 </script>
@@ -170,10 +170,11 @@
           <h3>진료시간</h3>
           <table class="time-table">
             <tbody>
-              <tr><td>월·수·금</td><td>10:00 – 19:00</td></tr>
-              <tr><td>화·목</td><td>10:00 – 20:30</td></tr>
+              <tr><td>월·금</td><td>10:00 – 19:00</td></tr>
+              <tr><td>화·목</td><td>10:00 – 20:30 · 야간진료</td></tr>
+              <tr><td>수</td><td>09:30 – 14:00 · 단축진료</td></tr>
               <tr><td>토</td><td>09:30 – 14:00</td></tr>
-              <tr><td>점심시간</td><td>13:00 – 14:00 · 토요일 제외</td></tr>
+              <tr><td>점심시간</td><td>월·금 13:00 – 14:00<br>화·목 12:30 – 14:00<br>수·토 없음</td></tr>
               <tr class="off"><td>일·공휴일</td><td>휴진</td></tr>
             </tbody>
           </table>
@@ -251,7 +252,7 @@
       </div>
       <div class="f-col">
         <h3>진료시간</h3>
-        <p>월·수·금 10:00–19:00<br>화·목 10:00–20:30<br>토 09:30–14:00<br>점심시간 13:00–14:00 (토 제외)<br>일·공휴일 휴진</p>
+        <p>월·금 10:00–19:00<br>화·목 10:00–20:30 (야간)<br>수 09:30–14:00 (단축)<br>토 09:30–14:00<br>점심 월·금 13:00–14:00 · 화·목 12:30–14:00<br>일·공휴일 휴진</p>
       </div>
     </div>
     <div class="legal">
